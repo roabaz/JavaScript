@@ -12,12 +12,12 @@ var fibonacci = [];
 for (j = 0; j <= numero; j++) {
   if (j === 0) {
     fibonacci.push(0);
-    console.log("Serie Fibonacci: " + fibonacci);
+    console.log(j + " - Serie Fibonacci: " + fibonacci);
   } else if (j === 1) {
     fibonacci.push(1);
-    console.log("Serie Fibonacci: " + fibonacci);
+    console.log(j + " - Serie Fibonacci: " + fibonacci);
   } else {
     fibonacci.push(fibonacci[j - 1] + fibonacci[j - 2]);
-    console.log("Serie Fibonacci: " + fibonacci);
+    console.log(j + " - Serie Fibonacci: " + fibonacci);
   }
 }
