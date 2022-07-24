@@ -2,7 +2,6 @@ debugger;
 alert(
   "A continuacion vamos a realizar la serie fibonacci, la cual comienza con 0, 1 y a partir de estos, cada serie siguente es la suma de los dos anteriores."
 );
-/* let numero = parseInt(prompt("Ingresá un numero entero positivo:")); */
 let numero = "";
 let correctNumber = /^[0-9]+$/;
 while (numero != numero.toString().match(correctNumber)) {
