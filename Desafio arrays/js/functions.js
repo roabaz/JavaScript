@@ -1,7 +1,6 @@
 let again = true;
 
 function searchAndDisplayProducts() {
-  debugger;
   while (again) {
     let q = "";
     while (q === "") {
