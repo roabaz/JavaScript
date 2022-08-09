@@ -6,6 +6,8 @@ function viewAllProducts() {
   console.table(listProducts);
 }
 
+viewAllProducts();
+
 function viewAllCategories() {
   let categories = [];
   products.forEach((item) => {
@@ -15,6 +17,8 @@ function viewAllCategories() {
   });
   console.table(categories);
 }
+
+viewAllCategories();
 
 function viewAllGenders() {
   let genders = [];
@@ -26,12 +30,14 @@ function viewAllGenders() {
   console.table(genders);
 }
 
+viewAllGenders();
+
 let again = true;
 let result = [];
 
 function searchAndDisplayProducts() {
   while (again) {
-    let q = "";
+    let q = prompt("Que vamos a buscar hoy?");
     while (q === "") {
       q = prompt("Que vamos a buscar hoy?");
     }
@@ -53,6 +59,8 @@ function searchAndDisplayProducts() {
   }
 }
 
+searchAndDisplayProducts();
+
 function filterProductsFoundedBySize() {
   again = true;
   while (result.length > 1 && again) {
@@ -67,6 +75,8 @@ function filterProductsFoundedBySize() {
   }
 }
 
+filterProductsFoundedBySize();
+
 function filterProductsFoundedByGender() {
   again = true;
   while (result.length > 1 && again) {
@@ -80,6 +90,8 @@ function filterProductsFoundedByGender() {
     console.log("Fin Filter");
   }
 }
+
+filterProductsFoundedByGender();
 
 function validateSizeSearchResult(param, name) {
   if (param.length < 1) {
@@ -120,6 +132,8 @@ function addItemToCart() {
   }
 }
 
+addItemToCart();
+
 function showItemsOnCart() {
   if (cart.length > 0) {
     console.table(cart);
@@ -127,6 +141,8 @@ function showItemsOnCart() {
     alert("Upss no hay ningun producto en el carrito para mostrar");
   }
 }
+
+showItemsOnCart();
 
 let totalItem = 0;
 function cartDetail() {
@@ -166,6 +182,8 @@ function cartDetail() {
   console.log("Total", "$", totalCart);
 }
 
+cartDetail();
+
 function removeItemFromCart() {
   if (cart.length > 0) {
     let remove = parseInt(
@@ -180,3 +198,9 @@ function removeItemFromCart() {
     alert("Upss no hay ningun producto en el carrito para eliminar");
   }
 }
+
+removeItemFromCart();
+
+console.log("---------------");
+
+cartDetail();
