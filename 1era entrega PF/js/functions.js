@@ -36,6 +36,7 @@ let again = true;
 let result = [];
 
 function searchAndDisplayProducts() {
+  let operation = "buscar";
   while (again) {
     let q = prompt("Que vamos a buscar hoy?");
     while (q === "") {
@@ -55,52 +56,48 @@ function searchAndDisplayProducts() {
       });
     });
     let name = "producto";
-    validateSizeSearchResult(result, name);
+    validateSizeSearchResult(result, name, operation);
   }
 }
 
 searchAndDisplayProducts();
 
-function filterProductsFoundedBySize() {
+function filterProductsFoundedBySizeOrGender() {
   again = true;
+  let operation = "filtrar";
+  let name = "";
   while (result.length > 1 && again) {
+    let option = parseInt(
+      prompt(
+        "Ingresa que filtro vas a querer: \n (1) para talle \n (2) para genero"
+      )
+    );
     let q = "";
     while (q === "") {
-      q = prompt("Ingresa el talle a buscar:").toLocaleLowerCase();
+      q = prompt("Ingresa la opcion a buscar:").toLocaleLowerCase();
     }
-    result = result.filter((item) => item.size.includes(q));
-    let name = "talle";
-    validateSizeSearchResult(result, name);
+    if ((option === 1)) {
+      result = result.filter((item) => item.size.includes(q));
+      name = "talle";
+    } else if ((option === 2)) {
+      result = result.filter((item) => item.gender.includes(q));
+      name = "genero";
+    }
+    validateSizeSearchResult(result, name, operation);
     console.log("Fin Filter");
   }
 }
 
-filterProductsFoundedBySize();
-
-function filterProductsFoundedByGender() {
-  again = true;
-  while (result.length > 1 && again) {
-    let q = "";
-    while (q === "") {
-      q = prompt("Ingresa el genero a buscar:").toLocaleLowerCase();
-    }
-    result = result.filter((item) => item.gender.includes(q));
-    let name = "genero";
-    validateSizeSearchResult(result, name);
-    console.log("Fin Filter");
-  }
-}
-
-filterProductsFoundedByGender();
+filterProductsFoundedBySizeOrGender();
 
 function validateSizeSearchResult(param, name) {
   if (param.length < 1) {
     console.log("Upss no tenemos ese", name);
-    again = confirm("Queres buscar denuevo?");
+    again = confirm("Queres", operation, "denuevo?");
   } else {
     console.log("Tu busqueda encontro", param.length, "Productos:");
     console.table(param);
-    again = false;
+    again = confirm("Queres", operation, "denuevo?");
   }
 }
 
