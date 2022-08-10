@@ -36,7 +36,6 @@ let again = true;
 let result = [];
 
 function searchAndDisplayProducts() {
-  let operation = "buscar";
   while (again) {
     let q = prompt("Que vamos a buscar hoy?");
     while (q === "") {
@@ -56,6 +55,7 @@ function searchAndDisplayProducts() {
       });
     });
     let name = "producto";
+    let operation = "buscar";
     validateSizeSearchResult(result, name, operation);
   }
 }
@@ -64,7 +64,6 @@ searchAndDisplayProducts();
 
 function filterProductsFoundedBySizeOrGender() {
   again = true;
-  let operation = "filtrar";
   let name = "";
   while (result.length > 1 && again) {
     let option = parseInt(
@@ -83,6 +82,7 @@ function filterProductsFoundedBySizeOrGender() {
       result = result.filter((item) => item.gender.includes(q));
       name = "genero";
     }
+    let operation = "filtrar";
     validateSizeSearchResult(result, name, operation);
     console.log("Fin Filter");
   }
@@ -90,14 +90,14 @@ function filterProductsFoundedBySizeOrGender() {
 
 filterProductsFoundedBySizeOrGender();
 
-function validateSizeSearchResult(param, name) {
+function validateSizeSearchResult(param, name, operation) {
   if (param.length < 1) {
     console.log("Upss no tenemos ese", name);
-    again = confirm("Queres", operation, "denuevo?");
+    again = confirm("Queres " + operation + " denuevo?");
   } else {
     console.log("Tu busqueda encontro", param.length, "Productos:");
     console.table(param);
-    again = confirm("Queres", operation, "denuevo?");
+    again = confirm("Queres " + operation + " denuevo?");
   }
 }
 
