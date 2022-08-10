@@ -62,25 +62,28 @@ function searchAndDisplayProducts() {
 
 searchAndDisplayProducts();
 
-function filterProductsFoundedBySizeOrGender() {
+function filterProductsFoundedBySizeOrGenderOrCategory() {
   again = true;
   let name = "";
   while (result.length > 1 && again) {
     let option = parseInt(
       prompt(
-        "Ingresa que filtro vas a querer: \n (1) para talle \n (2) para genero"
+        "Ingresa que filtro vas a querer: \n (1) para talle \n (2) para genero \n (3) para categoria"
       )
     );
     let q = "";
     while (q === "") {
       q = prompt("Ingresa la opcion a buscar:").toLocaleLowerCase();
     }
-    if ((option === 1)) {
+    if (option === 1) {
       result = result.filter((item) => item.size.includes(q));
       name = "talle";
-    } else if ((option === 2)) {
+    } else if (option === 2) {
       result = result.filter((item) => item.gender.includes(q));
       name = "genero";
+    } else if (option === 3) {
+      result = result.filter((item) => item.category.includes(q));
+      name = "categoria";
     }
     let operation = "filtrar";
     validateSizeSearchResult(result, name, operation);
@@ -88,7 +91,7 @@ function filterProductsFoundedBySizeOrGender() {
   }
 }
 
-filterProductsFoundedBySizeOrGender();
+filterProductsFoundedBySizeOrGenderOrCategory();
 
 function validateSizeSearchResult(param, name, operation) {
   if (param.length < 1) {
