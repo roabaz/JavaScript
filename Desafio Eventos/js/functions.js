@@ -59,10 +59,13 @@ function filterProductsFoundedByGender() {
   option.forEach((item, i) => {
     item.addEventListener("click", (e) => {
       if (e.target.id === "Mujer") {
+        result = products;
         q = item.id;
       } else if (e.target.id === "Hombre") {
+        result = products;
         q = item.id;
       } else if (e.target.id === "Niños") {
+        result = products;
         q = item.id;
       }
       result = result.filter((item) => item.gender.includes(q));
@@ -71,7 +74,7 @@ function filterProductsFoundedByGender() {
   });
 }
 
-filterProductsFoundedByGender()
+filterProductsFoundedByGender();
 
 function filterProductsFoundedBysizesOrGenderOrCategory() {
   while (result.length >= 1) {
@@ -206,6 +209,7 @@ function loadAllProductsOnMain(productsSearched, q) {
   const quantity = document.getElementById("productsQuantity");
   let showFullPrice = "";
   let result;
+  items.innerHTML = "";
   if (!q) {
     result = products;
   } else {
@@ -264,7 +268,6 @@ function loadAllProductsOnMain(productsSearched, q) {
     quantity.innerHTML = `<p class="mt-4 alert alert-success col-xl-3 col-12 mx-auto">${message}</p>`;
   }
 }
-
 
 let itemsViewed = [];
 function itemDetail(id) {
