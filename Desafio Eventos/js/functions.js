@@ -56,7 +56,6 @@ viewAllGenders();
 
 function filterProductsFoundedByGender() {
   let option = document.querySelectorAll(".gender");
-  loadAllProductsOnMain();
   option.forEach((item, i) => {
     item.addEventListener("click", (e) => {
       if (e.target.id === "Mujer") {
