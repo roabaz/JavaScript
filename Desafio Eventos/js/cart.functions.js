@@ -6,27 +6,27 @@ function addItemToCart() {
   products.forEach((prod, i) => {
     add.forEach((item, i) => {
       item.addEventListener("click", (e) => {
-        console.log(e.target.id);
         if (prod.id_item === e.target.id) {
           cart.push(prod);
           totalCart += prod.price;
           showItemsCountCart(cart);
-          cartDetail()
+          cartDetail();
         }
+        localStorage.setItem("cart2", JSON.stringify(cart));
       });
     });
   });
 }
 addItemToCart();
 
-
-
 function cartDetail() {
   cart.forEach((item, i) => {
+    const exist = items.some((itemInItems) => itemInItems.id === item.id);
     let quantity = cart.filter(
       (itemInItems) => itemInItems.id === item.id
     ).length;
     totalItem = quantity * item.price;
+    if (!exist) {
       items.push(
         new CartItem(
           item.id,
@@ -39,7 +39,13 @@ function cartDetail() {
           totalItem
         )
       );
-    showCart(items);
+      localStorage.setItem("items2", JSON.stringify(items));
+    }
+    if (localStorage.items2) {
+      let items2 = JSON.parse(localStorage.getItem("items2"));
+
+      showCart(items2);
+    }
   });
 
   /* console.log("-----------------------");
@@ -80,4 +86,3 @@ showItemsCountCart(cart);
 /* cartDetail();
 http://localhost/CoderHouseFullStack/Javascript/Desafio%20Dom/
  */
-

@@ -123,7 +123,7 @@ function loadAllProductsOnMain(productsSearched, q) {
   }
 }
 
-let itemsViewed = [];
+/* let itemsViewed = [];
 function itemDetail(id) {
   const detail = document.getElementById("ItemDetail");
   itemsViewed.push(id);
@@ -145,23 +145,20 @@ function itemDetail(id) {
     }
   });
   window.location.href = "item.html";
-}
+} */
 
 function clearAllCartItems() {
-  let items = [];
+  let items2 = [];
   let cart = [];
-  showCart(items);
+  localStorage.removeItem("items2");
+  showCart(items2);
   showItemsCountCart(cart);
 }
 
-function showCart(items) {
+function showCart(items2) {
   const cartTable = document.getElementById("cartTable");
   cartTable.innerHTML = "";
-  console.log(items);
-  items.forEach((item, i) => {
-    console.log(item.title);
-    console.log(item.quantity);
-    console.log(item.total);
+  items2.forEach((item, i) => {
     cartTable.innerHTML += ` 
     <tr>
                         <td class="mr-3 border">${item.title}</td>
@@ -171,7 +168,7 @@ function showCart(items) {
                         `;
   });
 
-  if (items.length > 0) {
+  if (items2.length > 0) {
     cartTable.innerHTML += `
   <td class="text-dark border">Productos en el carrito: ${cart.length}</td>
    <b><td class="text-dark border">Total: $${totalCart}</td></b>
