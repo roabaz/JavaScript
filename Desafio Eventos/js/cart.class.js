@@ -1,7 +1,7 @@
 class CartItem {
-  constructor(id, name, price, size, gender, category, quantity, total) {
+  constructor(id, title, price, size, gender, category, quantity, total) {
     this.id = id;
-    this.name = name;
+    this.title = title;
     this.price = price;
     this.size = size;
     this.gender = gender;

@@ -22,7 +22,7 @@ function viewAllCategories() {
 let result = [];
 let q = "";
 
-function searchAndDisplayProducts(q) {
+function searchAndDisplayProducts(result, q) {
   result = products.filter((item) => item.title.toLowerCase().includes(q));
   let k = q.split(" ");
   products.forEach((item, i) => {
@@ -37,6 +37,7 @@ function searchAndDisplayProducts(q) {
     });
   });
   validatesizesSearchResult(result, q);
+
 }
 
 function viewAllGenders() {
@@ -53,28 +54,67 @@ function viewAllGenders() {
 }
 
 viewAllGenders();
-
+let gender = "";
 function filterProductsFoundedByGender() {
   let option = document.querySelectorAll(".gender");
   option.forEach((item, i) => {
     item.addEventListener("click", (e) => {
-      if (e.target.id === "Mujer") {
-        result = products;
-        q = item.id;
-      } else if (e.target.id === "Hombre") {
-        result = products;
-        q = item.id;
-      } else if (e.target.id === "Niños") {
-        result = products;
-        q = item.id;
-      }
-      result = result.filter((item) => item.gender.includes(q));
-      validatesizesSearchResult(result, q);
+      result = products;
+      gender = e.target.id;
+      result = result.filter((item) => item.gender.includes(gender));
+      viewAllSizes(result, gender, q);
+      validatesizesSearchResult(result, gender);
     });
   });
 }
 
 filterProductsFoundedByGender();
+
+function viewAllSizes() {
+  let sizes = [];
+  const sizes_element = document.getElementById("sizes");
+  if (gender === "" || q === "") {
+    result = products;
+  } else {
+    result = result;
+  }
+  result.forEach((item) => {
+    let k = item.sizes;
+    k.forEach((item2, i) => {
+      if (!sizes.includes(item2)) {
+        sizes.push(item2);
+      }
+    });
+  });
+
+  sizes_element.innerHTML = "";
+
+  sizes.forEach((item) => {
+    sizes_element.innerHTML += ` 
+    <button id="${item}" class="size btn btn-light mt-2"   onclick="filterProductsFoundedBySize()" > ${item}</button>
+                                    `;
+  });
+}
+
+function filterProductsFoundedBySize() {
+  const option = document.querySelectorAll(".size");
+  option.forEach((item, i) => {
+    item.addEventListener("click", (e) => {
+      let size = e.target.id;
+      result = result.filter((item) => item.sizes.includes(size));
+      validatesizesSearchResult(result, size);
+    });
+  });
+}
+
+filterProductsFoundedBySize();
+
+function cleanFilters() {
+  result = products;
+  q = "";
+  viewAllSizes(result, q);
+  loadAllProductsOnMain(result, q);
+}
 
 function filterProductsFoundedBysizesOrGenderOrCategory() {
   while (result.length >= 1) {
@@ -205,18 +245,16 @@ http://localhost/CoderHouseFullStack/Javascript/Desafio%20Dom/
 
 function loadAllProductsOnMain(productsSearched, q) {
   const items = document.getElementById("main");
-
+console.log(q);
   const quantity = document.getElementById("productsQuantity");
   let showFullPrice = "";
   let result;
   items.innerHTML = "";
-  if (!q) {
+  if (q === "") {
     result = products;
   } else {
     result = productsSearched;
-    items.innerHTML = "";
   }
-
   result.forEach((item, i) => {
     let itemSizes = item.sizes.join(" | ");
     if (item.full_price != "") {
@@ -253,7 +291,6 @@ function loadAllProductsOnMain(productsSearched, q) {
                         }</span>
                         ${showFullPrice}
                         <p class="sizes mt-2r">${itemSizes}</p>
-                        <p>${item.gender}</p>
                       </div>
                     </a>`;
     }
@@ -305,7 +342,19 @@ function getSearch() {
     }
   });
   q = inputButton.value;
-  searchAndDisplayProducts(q);
+  searchAndDisplayProducts(result, q);
 }
 
 getSearch();
+
+
+
+
+console.log(
+  "producto:",
+  item.title,
+  "| cantidad:",
+  item.quantity,
+  "| subtotal producto: $",
+  item.total
+);
