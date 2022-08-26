@@ -23,8 +23,9 @@ function filterProductsFoundedBySize() {
   option.forEach((item, i) => {
     item.addEventListener("click", (e) => {
       let size = e.target.id;
-      result = result.filter((item) => item.sizes.includes(size));
-      validatesizesSearchResult(result, size);
+      results = result.filter((item) => item.sizes.includes(size));
+      viewAllSizes(results, gender, size);
+      validatesizesSearchResult(results, size);
     });
   });
 }
@@ -36,18 +37,13 @@ function filterProductsFoundedByCategory() {
   option.forEach((item, i) => {
     item.addEventListener("click", (e) => {
       let category = e.target.id;
-      if (q === "" || q === null || q === undefined) {
-        result = products;
-      } else {
-        result = result;
-      }
       results = result.filter((item) => item.category.includes(category));
       viewAllSizes(results, gender, category);
       validatesizesSearchResult(results, category);
     });
   });
 }
-
+filterProductsFoundedByCategory()
 
 function cleanFilters() {
   result = products;

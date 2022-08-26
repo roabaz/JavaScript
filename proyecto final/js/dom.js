@@ -8,7 +8,7 @@ function viewAllcategories() {
     if (!categories.includes(item.category)) {
       categories.push(item.category);
       categories_element.innerHTML += ` 
-    <button id="${item.category}" class="category btn btn-secondary"   onclick="filterProductsFoundedByCategory()" > ${item.category}</button>
+    <button id="${item.category}" class="category btn btn-secondary"> ${item.category}</button>
                                     `;
     }
   });
@@ -26,7 +26,7 @@ function viewAllGenders() {
     if (!genders.includes(item.gender)) {
       genders.push(item.gender);
       genders_element.innerHTML += ` 
-    <button id="${item.gender}" class="gender btn btn-warning"   onclick="filterProductsFoundedByGender()" > ${item.gender}</button>
+    <button id="${item.gender}" class="gender btn btn-warning"> ${item.gender}</button>
                                     `;
     }
   });
