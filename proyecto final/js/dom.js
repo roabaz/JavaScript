@@ -37,7 +37,7 @@ viewAllGenders();
 function viewAllSizes() {
   let sizes = [];
   const sizes_element = document.getElementById("sizes");
-  if (!gender) {
+  if (gender === "") {
     result = products;
   } else {
     result = result;

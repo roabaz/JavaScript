@@ -1,12 +1,11 @@
 let gender = "";
-
 function filterProductsFoundedByGender() {
   let option = document.querySelectorAll(".gender");
   option.forEach((item, i) => {
     item.addEventListener("click", (e) => {
       if (q === "" || q === null || q === undefined) {
         result = products;
-      }else{
+      } else {
         result = result;
       }
       gender = e.target.id;
@@ -37,13 +36,17 @@ function filterProductsFoundedByCategory() {
   option.forEach((item, i) => {
     item.addEventListener("click", (e) => {
       let category = e.target.id;
-      result = result.filter((item) => item.category.includes(category));
-      viewAllSizes(result, gender, category);
-      validatesizesSearchResult(result, category);
+      if (q === "" || q === null || q === undefined) {
+        result = products;
+      } else {
+        result = result;
+      }
+      results = result.filter((item) => item.category.includes(category));
+      viewAllSizes(results, gender, category);
+      validatesizesSearchResult(results, category);
     });
   });
 }
-filterProductsFoundedByCategory()
 
 
 function cleanFilters() {
@@ -51,21 +54,3 @@ function cleanFilters() {
   q = "";
   loadAllProductsOnMain(result, q);
 }
-
-function filterProductsFoundedBysizesOrGenderOrCategory() {
-  while (result.length >= 1) {
-    result = result.filter((item) => item.sizes.includes(q));
-    title = "talle";
-
-    result = result.filter((item) => item.gender.includes(q));
-    title = "genero";
-
-    result = result.filter((item) => item.category.includes(q));
-    title = "categoria";
-
-    validatesizesSearchResult(result);
-    console.log("Fin Filter");
-  }
-}
-/* filterProductsFoundedBysizesOrGenderOrCategory();
- */
