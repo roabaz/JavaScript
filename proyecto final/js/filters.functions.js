@@ -3,15 +3,11 @@ function filterProductsFoundedByGender() {
   let option = document.querySelectorAll(".gender");
   option.forEach((item, i) => {
     item.addEventListener("click", (e) => {
-      if (q === "" || q === null || q === undefined) {
-        result = products;
-      } else {
-        result = result;
-      }
       gender = e.target.id;
-      result = result.filter((item) => item.gender.includes(gender));
-      viewAllSizes(result, gender, q);
-      validatesizesSearchResult(result, gender);
+      results = result.filter((item) => item.gender.includes(gender));
+      viewAllSizes(results, gender, q);
+      validatesizesSearchResult(results, gender);
+      filterProductsFoundedBySize()
     });
   });
 }
@@ -49,4 +45,5 @@ function cleanFilters() {
   result = products;
   q = "";
   loadAllProductsOnMain(result, q);
+  filterProductsFoundedBySize()
 }
