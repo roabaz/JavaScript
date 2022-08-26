@@ -32,6 +32,20 @@ function filterProductsFoundedBySize() {
 
 filterProductsFoundedBySize();
 
+function filterProductsFoundedByCategory() {
+  const option = document.querySelectorAll(".category");
+  option.forEach((item, i) => {
+    item.addEventListener("click", (e) => {
+      let category = e.target.id;
+      result = result.filter((item) => item.category.includes(category));
+      viewAllSizes(result, gender, category);
+      validatesizesSearchResult(result, category);
+    });
+  });
+}
+filterProductsFoundedByCategory()
+
+
 function cleanFilters() {
   result = products;
   q = "";

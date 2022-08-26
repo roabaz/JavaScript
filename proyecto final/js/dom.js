@@ -1,16 +1,19 @@
-let items = [];
-let totalItem = 0;
-
-/*  viewAllProducts(); */
-function viewAllCategories() {
+function viewAllcategories() {
   let categories = [];
-  products.forEach((item) => {
+  const categories_element = document.getElementById("categories");
+
+  result = products;
+
+  result.forEach((item) => {
     if (!categories.includes(item.category)) {
       categories.push(item.category);
+      categories_element.innerHTML += ` 
+    <button id="${item.category}" class="category btn btn-secondary"   onclick="filterProductsFoundedByCategory()" > ${item.category}</button>
+                                    `;
     }
   });
-  console.table(categories);
 }
+viewAllcategories()
 let q = "";
 /* viewAllCategories(); */
 function viewAllGenders() {
@@ -19,7 +22,7 @@ function viewAllGenders() {
 
   result = products;
 
-  products.forEach((item) => {
+  result.forEach((item) => {
     if (!genders.includes(item.gender)) {
       genders.push(item.gender);
       genders_element.innerHTML += ` 

@@ -1,5 +1,7 @@
 let cart = [];
 let totalCart = 0;
+let items = [];
+let totalItem = 0;
 
 function addItemToCart() {
   const add = document.querySelectorAll(".add");
@@ -18,11 +20,11 @@ function addItemToCart() {
   });
 }
 addItemToCart();
-
+let quantity = 1;
 function cartDetail() {
   cart.forEach((item, i) => {
     const exist = items.some((itemInItems) => itemInItems.id === item.id);
-    let quantity = cart.filter(
+    quantity = cart.filter(
       (itemInItems) => itemInItems.id === item.id
     ).length;
     totalItem = quantity * item.price;
@@ -39,6 +41,10 @@ function cartDetail() {
           totalItem
         )
       );
+       
+          this.quantity =  quantity;
+          this.totalItem = totalItem;
+     
       localStorage.setItem("items2", JSON.stringify(items));
     }
     if (localStorage.items2) {
@@ -47,10 +53,7 @@ function cartDetail() {
       showCart(items2);
     }
   });
-
-  /* console.log("-----------------------");
-  console.log("Total", "$", totalCart);
-  console.log("cantidad total", cart.length); */
+  console.log(items);
 }
 cartDetail();
 
