@@ -34,14 +34,10 @@ function viewAllGenders() {
 
 viewAllGenders();
 
-function viewAllSizes() {
+function viewAllSizes(result) {
   let sizes = [];
   const sizes_element = document.getElementById("sizes");
-  if (gender === "") {
-    result = products;
-  } else {
-    result = result;
-  }
+
   result.forEach((item) => {
     let k = item.sizes;
     k.forEach((item2, i) => {
@@ -65,6 +61,7 @@ function loadAllProductsOnMain(productsSearched, q) {
   let showFullPrice = "";
   let result;
   items.innerHTML = "";
+  console.log(q);
   if (q === "" || q === null || q === undefined) {
     result = products;
   } else {
