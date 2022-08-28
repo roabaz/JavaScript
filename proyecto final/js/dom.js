@@ -76,7 +76,8 @@ function loadAllProductsOnMain(productsSearched, q) {
   let showFullPrice = "";
   let result;
   items.innerHTML = "";
-  if (q === "" || q === null || q === undefined) {
+  console.log(gender);
+  if (q === "" || q === null || q === undefined || gender === "") {
     result = products;
   } else {
     result = productsSearched;
