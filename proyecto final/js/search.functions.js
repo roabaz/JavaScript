@@ -1,4 +1,4 @@
-let result = [];
+
 
 function searchAndDisplayProducts(q) {
   result = products.filter((item) => item.title.toLowerCase().includes(q));

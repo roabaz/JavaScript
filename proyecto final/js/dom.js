@@ -13,8 +13,8 @@ function viewAllcategories() {
     }
   });
 }
-viewAllcategories()
-let q = "";
+viewAllcategories();
+
 /* viewAllCategories(); */
 function viewAllGenders() {
   let genders = [];
@@ -61,13 +61,11 @@ function loadAllProductsOnMain(productsSearched, q) {
   let showFullPrice = "";
   let result;
   items.innerHTML = "";
-  console.log(q);
   if (q === "" || q === null || q === undefined) {
     result = products;
   } else {
     result = productsSearched;
   }
-
   result.forEach((item, i) => {
     let itemSizes = item.sizes.join(" | ");
     if (item.full_price != "") {
@@ -88,28 +86,28 @@ function loadAllProductsOnMain(productsSearched, q) {
       .replaceAll(",", " ")
       .replaceAll("-", "")
       .replaceAll(".", "");
-    /*     console.log(newTitle);
-     */
 
     /*     onclick="itemDetail(${
       item.id_item
     })" */
     if (items /* && i < 6 */) {
-      items.innerHTML += `<a cursor-auto class="card item mx-auto my-auto mb-3 col-xl-3 col-6" >
-                      <div>
+      items.innerHTML += `
+                      <div class="card item mx-auto my-auto mb-3 col-xl-3 col-6 cursor-auto">
+                      <a  onclick="itemDetail(${item.id_item})" >
                         <img class="item__img" src="${item.pic}">
-                        <p class="mt-2">${newTitle}</p>
+                        <b><p class="mt-2 text-center">${newTitle}</p></b>
+                        </a>
                         <hr>
-                        <span class="price">${
-                          item.currency + " " + item.price
-                        }</span>
+                        <div class="mx-auto">
+                        <b><span class="price text-danger">${item.currency + " " + item.price}</span></b>
                         ${showFullPrice}
-                        <p class="sizes mt-2">${itemSizes}</p>
+                        </div>
+                        <p class="sizes text-center mt-2">${itemSizes}</p>
                         <button id="${
                           item.id_item
                         }" class="add fa-solid fa-circle-plus mt-2 btn btn-info"></button>
                       </div>
-                    </a>`;
+                    `;
     }
   });
   let message = "";
@@ -123,7 +121,7 @@ function loadAllProductsOnMain(productsSearched, q) {
   }
 }
 
-/* let itemsViewed = [];
+let itemsViewed = [];
 function itemDetail(id) {
   const detail = document.getElementById("ItemDetail");
   itemsViewed.push(id);
@@ -145,33 +143,39 @@ function itemDetail(id) {
     }
   });
   window.location.href = "item.html";
-} */
-
-function clearAllCartItems() {
-  let items2 = [];
-  let cart = [];
-  localStorage.removeItem("items2");
-  showCart(items2);
-  showItemsCountCart(cart);
 }
 
 function showCart(items2) {
   const cartTable = document.getElementById("cartTable");
+  if (localStorage.items2) {
+    items2 = JSON.parse(localStorage.getItem("items2"));
+  }
   cartTable.innerHTML = "";
   items2.forEach((item, i) => {
     cartTable.innerHTML += ` 
-    <tr>
-                        <td class="mr-3 border">${item.title}</td>
-                        <td class="mr-3 border">$${item.total}</td>
-                        <td class="mr-3 border">${item.quantity}</td>
-                        </tr>
+                        <tr>
+                          <td class="mr-3 border">${item.title}</td>
+                          <td class="mr-3 border">$${item.total}</td>
+                          <td class="mr-3 border">${item.quantity}</td>
+                         
+                          </tr>
                         `;
   });
-
-  if (items2.length > 0) {
+  console.log(items2);
+  if (items2.length >= 1) {
     cartTable.innerHTML += `
-  <td class="text-dark border">Productos en el carrito: ${cart.length}</td>
-   <b><td class="text-dark border">Total: $${totalCart}</td></b>
-  `;
+                            <td class="text-dark border">Productos en el carrito: ${cart.length}</td>
+                            <b><td class="text-dark border">Total: $${totalCart}</td></b>
+                            `;
+  } else if (items2.length === 0) {
+    cartTable.innerHTML = `
+                            <td class="alert alert-info">Agrega productos al carrito</td>
+                            <td class="alert alert-info">0</td>
+                            <td class="alert alert-info">0</td>
+                          `;
   }
 }
+
+/* WIP */
+/* <button id="${item.id_item}" onclick="addItemToCart()" class="add mr-3 border btn btn-success">Agregar</button>
+<button id="${item.id}" onclick="removeItemFromCart()" class="remove mr-3 border btn btn-danger">Borrar</button> */

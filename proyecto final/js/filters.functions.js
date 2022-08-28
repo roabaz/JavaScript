@@ -1,4 +1,4 @@
-let gender = "";
+
 function filterProductsFoundedByGender() {
   let option = document.querySelectorAll(".gender");
   option.forEach((item, i) => {
