@@ -26,15 +26,18 @@
         <script defer src="js/filters.functions.js"></script>
         <script defer src="js/cart.class.js"></script>
         <script defer src="js/cart.functions.js"></script>
+        <script defer src="js/return_to_top.js"></script>
     </head>
 
     <body>
+        <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa-solid fa-circle-arrow-up h3"></i></button>
         <div class="container-fluid text-white bg-dark p-3">
             <a href="index.html"><h1 class="text-center p-4">Desafio Eventos</h1></a>
             <div class="row col-xl-5 col-12 mx-auto text-center">
                 <div class="form-group">
                     <input class="col-3 form-control" type="search"
-                        id="input-search" name="q" placeholder="Que vamos a buscar hoy?">
+                        id="input-search" name="q" placeholder="Que vamos a
+                        buscar hoy?">
                     <button class="btn btn-primary col-xl-2 col-6 mt-2"
                         type="submit" onclick="getSearch()" id="button-search">Buscar</button>
                 </div>
@@ -62,10 +65,10 @@
                                     </tr>
                                 </thead>
                                 <tbody id="cartTable">
-            
+
                                 </tbody>
                             </table>
-            
+
                         </div>
                     </div>
                     <button class="btn btn-dark" onclick="clearAllCartItems()">Vaciar
@@ -76,33 +79,36 @@
 
 
         <div class="container p-4">
-
-           
-
             <div class="text-center">
                 <span id="cartCount" class="countCart"> </span>
-
                 <button onclick="cartDetail()" data-bs-toggle="modal"
                     data-bs-target="#exampleModal" class="fa-solid
                     fa-cart-shopping
-                    btn btn-light"></button>
+                    btn btn-light">
+                </button>
             </div>
-
-            <button class="btn btn-dark" onclick="cleanFilters()">Limpiar
-                filtros </button>
-
-            <div class="text-center" id="gender">
-
+            <div class="mx-auto text-center m-3">
+                <button class="btn btn-dark " onclick="cleanFilters()">Limpiar
+                    filtros
+                </button>
             </div>
+            <div class="alert alert-dark">
+                <h5 class="text-center">Genero</h5>
+                <div class="text-center" id="gender">
 
-            <div class="text-center" id="sizes">
+                </div>
+                <h5 class="text-center mt-3">Talles</h5>
 
+                <div class="text-center" id="sizes">
+
+                </div>
+
+                <h5 class="text-center mt-3">Categorias</h5>
+
+                <div class="text-center" id="categories">
+
+                </div>
             </div>
-
-            <div class="text-center" id="categories">
-
-            </div>
-
 
             <div class="text-center" id="productsQuantity">
 
@@ -114,6 +120,9 @@
 
 
         </div>
+
+
+
         <footer class="bg-dark p-4 text-white text-center">
             <h4>Estudiante => Rodrigo Abaz</h4>
         </footer>

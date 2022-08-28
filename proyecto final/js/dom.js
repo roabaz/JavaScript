@@ -8,7 +8,7 @@ function viewAllcategories() {
     if (!categories.includes(item.category)) {
       categories.push(item.category);
       categories_element.innerHTML += ` 
-    <button id="${item.category}" class="category btn btn-secondary"> ${item.category}</button>
+    <button id="${item.category}" class="category btn btn-secondary m-2"> ${item.category}</button>
                                     `;
     }
   });
@@ -55,9 +55,8 @@ function viewAllSizes(result) {
 
 let viewer = new IntersectionObserver(
   (items, i) => {
-    console.log(items);
     items.forEach((item) => {
-        if (item.isIntersecting && limit < result.length) {
+        if (item.isIntersecting && result.length > limit ) {
           limit += 20;
           loadAllProductsOnMain();
         }
@@ -70,17 +69,16 @@ let viewer = new IntersectionObserver(
 );
 
 let limit = 20;
-function loadAllProductsOnMain(productsSearched, q) {
+function loadAllProductsOnMain(results, q) {
   const items = document.getElementById("main");
   const quantity = document.getElementById("productsQuantity");
   let showFullPrice = "";
   let result;
   items.innerHTML = "";
-  console.log(gender);
-  if (q === "" || q === null || q === undefined || gender === "") {
-    result = products;
+  if (results) {
+    result = results;
   } else {
-    result = productsSearched;
+    result = products;
   }
   result.forEach((item, i) => {
     let itemSizes = item.sizes.join(" | ");
@@ -97,7 +95,7 @@ function loadAllProductsOnMain(productsSearched, q) {
 
     let newTitle = item.title.split(" ");
     newTitle = newTitle
-      .slice(0, 4)
+      .slice(0, 3)
       .toString()
       .replaceAll(",", " ")
       .replaceAll("-", "")
