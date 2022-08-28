@@ -15,7 +15,6 @@ function viewAllcategories() {
 }
 viewAllcategories();
 
-/* viewAllCategories(); */
 function viewAllGenders() {
   let genders = [];
   const genders_element = document.getElementById("gender");
@@ -31,7 +30,6 @@ function viewAllGenders() {
     }
   });
 }
-
 viewAllGenders();
 
 function viewAllSizes(result) {
@@ -55,6 +53,23 @@ function viewAllSizes(result) {
   });
 }
 
+let viewer = new IntersectionObserver(
+  (items, i) => {
+    console.log(items);
+    items.forEach((item) => {
+        if (item.isIntersecting && limit < result.length) {
+          limit += 20;
+          loadAllProductsOnMain();
+        }
+    });
+  },
+  {
+    rootMargin: "0px 0px 0px 0px",
+    threshold: 1.0,
+  }
+);
+
+let limit = 20;
 function loadAllProductsOnMain(productsSearched, q) {
   const items = document.getElementById("main");
   const quantity = document.getElementById("productsQuantity");
@@ -90,16 +105,18 @@ function loadAllProductsOnMain(productsSearched, q) {
     /*     onclick="itemDetail(${
       item.id_item
     })" */
-    if (items /* && i < 6 */) {
+    if (items && i < limit) {
       items.innerHTML += `
                       <div class="card item mx-auto my-auto mb-3 col-xl-3 col-6 cursor-auto">
-                      <a  onclick="itemDetail(${item.id_item})" >
+                      <a href="item.html" onclick="itemDetail(${item.id})" >
                         <img class="item__img" src="${item.pic}">
                         <b><p class="mt-2 text-center">${newTitle}</p></b>
                         </a>
                         <hr>
                         <div class="mx-auto">
-                        <b><span class="price text-danger">${item.currency + " " + item.price}</span></b>
+                        <b><span class="price text-danger">${
+                          item.currency + " " + item.price
+                        }</span></b>
                         ${showFullPrice}
                         </div>
                         <p class="sizes text-center mt-2">${itemSizes}</p>
@@ -110,6 +127,13 @@ function loadAllProductsOnMain(productsSearched, q) {
                     `;
     }
   });
+
+  const product = document.querySelectorAll(".card");
+  let lastProduct = product[product.length - 1];
+  /*   console.log(product);
+  console.log(lastProduct); */
+  viewer.observe(lastProduct);
+
   let message = "";
   if (result.length > 0) {
     message = `Encontramos ${result.length} productos`;
@@ -123,26 +147,12 @@ function loadAllProductsOnMain(productsSearched, q) {
 
 let itemsViewed = [];
 function itemDetail(id) {
-  const detail = document.getElementById("ItemDetail");
-  itemsViewed.push(id);
-  let id_item = id;
-
   result.forEach((item) => {
-    if (id_item === item.id_item) {
-      console.log("good");
-      detail.innerHTML = ` 
-                            <div">
-                                <img src="${item.pic}" width="268" height="300">
-                                <p class="mt-2">${item.title}</p>
-                                <hr>
-                                <span>${item.currency + " " + item.price}</span>
-                                ${showFullPrice}
-                                <p>${itemSizes}</p>
-                            </a>
-                          `;
+    if (id === item.id) {
+      itemsViewed.push(item);
     }
   });
-  window.location.href = "item.html";
+  localStorage.setItem("itemsViewed2", JSON.stringify(itemsViewed));
 }
 
 function showCart(items2) {
@@ -179,3 +189,6 @@ function showCart(items2) {
 /* WIP */
 /* <button id="${item.id_item}" onclick="addItemToCart()" class="add mr-3 border btn btn-success">Agregar</button>
 <button id="${item.id}" onclick="removeItemFromCart()" class="remove mr-3 border btn btn-danger">Borrar</button> */
+
+/*
+ */
