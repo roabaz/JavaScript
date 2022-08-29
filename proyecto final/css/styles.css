@@ -67,3 +67,7 @@
 #myBtn:hover {
   background-color: rgb(35, 89, 99); /* Add a dark-grey background on hover */
 }
+
+.active, button:hover {
+  background-color: green;
+}

@@ -34,12 +34,12 @@ function addItemToCart() {
   });
 }
 addItemToCart();
-let quantity = 0;
 
 function clearAllCartItems() {
   let items = [];
   let cart = [];
   items.splice(0, items.length);
+  cart.splice(0, cart.length);
   localStorage.clear();
   addItemToCart();
   showCart(items);
@@ -97,14 +97,12 @@ function removeItemFromCart() {
   }
 }
 
+let cart2 = [];
+
 function showItemsCountCart() {
   const count = document.getElementById("cartCount");
-  let cart2 = [];
-  if (localStorage.cart2) {
-    cart2 = JSON.parse(localStorage.getItem("cart2"));
-  }
   let totalItemsOnCart = 0;
-  cart2.length > 0 ? (totalItemsOnCart = cart.length) : (totalItemsOnCart = 0);
+  if (cart.length > 0) {totalItemsOnCart = cart.length} else{ totalItemsOnCart = 0};
   let show = (innerText = "");
   show = count.innerText = totalItemsOnCart;
 }

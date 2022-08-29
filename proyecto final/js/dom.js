@@ -18,7 +18,7 @@ viewAllcategories();
 function viewAllGenders() {
   let genders = [];
   const genders_element = document.getElementById("gender");
-
+  genders_element.innerHTML = "";
   result = products;
 
   result.forEach((item) => {
