@@ -80,6 +80,7 @@ function loadAllProductsOnMain(results, q) {
   } else {
     result = products;
   }
+
   result.forEach((item, i) => {
     let itemSizes = item.sizes.join(" | ");
     if (item.full_price != "") {
