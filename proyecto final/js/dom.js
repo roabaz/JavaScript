@@ -56,10 +56,13 @@ function viewAllSizes(result) {
 let viewer = new IntersectionObserver(
   (items, i) => {
     items.forEach((item) => {
-        if (item.isIntersecting && result.length > limit ) {
-          limit += 20;
-          loadAllProductsOnMain();
-        }
+      if (item.isIntersecting && result.length > limit) {
+        limit += 20;
+        console.log(results);
+        result = results.length > 0 ? (result = results) : (result = products);
+        validatesizesSearchResult(result);
+        addItemToCart();
+      }
     });
   },
   {
@@ -75,11 +78,13 @@ function loadAllProductsOnMain(results, q) {
   let showFullPrice = "";
   let result;
   items.innerHTML = "";
-  if (results) {
+  /*   if (results) {
     result = results;
   } else {
     result = products;
-  }
+  } */
+
+  result = results.length > 0 ? (result = results) : (result = products);
 
   result.forEach((item, i) => {
     let itemSizes = item.sizes.join(" | ");

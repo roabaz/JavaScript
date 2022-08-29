@@ -6,3 +6,4 @@ let cart = [];
 let items2 = [];
 let items = [];
 let result = [];
+let results = [];

@@ -12,7 +12,9 @@ function filterProductsFoundedByGender() {
       results = result.filter((item) => item.gender.includes(gender));
       viewAllSizes(results);
       validatesizesSearchResult(results, gender);
-      filterProductsFoundedBySize()
+      filterProductsFoundedBySize();
+      filterProductsFoundedByCategory()
+      addItemToCart();
     });
   });
 }
@@ -26,6 +28,8 @@ function filterProductsFoundedBySize() {
       let size = e.target.id;
       results = result.filter((item) => item.sizes.includes(size));
       validatesizesSearchResult(results, size);
+      addItemToCart();
+
     });
   });
 }
@@ -37,11 +41,18 @@ function filterProductsFoundedByCategory() {
   option.forEach((item, i) => {
     item.addEventListener("click", (e) => {
       let category = e.target.id;
+      if (q === "" || q === null || q === undefined) {
+        result = products;
+      }else{
+        result = result;
+      }
       results = result.filter((item) => item.category.includes(category));
       viewAllSizes(results, gender, category);
       validatesizesSearchResult(results, category);
+      addItemToCart();
     });
   });
+  
 }
 filterProductsFoundedByCategory()
 
@@ -49,5 +60,6 @@ function cleanFilters() {
   result = products;
   q = "";
   loadAllProductsOnMain(result, q);
-  filterProductsFoundedBySize()
+  filterProductsFoundedBySize();
+  
 }

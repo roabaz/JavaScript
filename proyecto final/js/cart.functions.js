@@ -24,9 +24,11 @@ function clearAllCartItems() {
   let cart = [];
   localStorage.clear("items2");
   localStorage.clear("cart2");
-  showCart(items2);
+  addItemToCart()
+  showCart(items);
   cartDetail(items);
   showItemsCountCart(cart);
+
 }
 
 
