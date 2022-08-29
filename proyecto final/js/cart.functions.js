@@ -22,8 +22,8 @@ let quantity = 0;
 function clearAllCartItems() {
   let items = [];
   let cart = [];
-  localStorage.clear("items2");
-  localStorage.clear("cart2");
+  items.splice(0, items.length);
+  localStorage.clear();
   addItemToCart()
   showCart(items);
   cartDetail(items);

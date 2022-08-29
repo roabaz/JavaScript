@@ -163,7 +163,7 @@ function itemDetail(id) {
 function showCart(items2) {
   const cartTable = document.getElementById("cartTable");
   if (localStorage.items2) {
-    items2 = JSON.parse(localStorage.getItem("items2"));
+    items2 = JSON.parse(localStorage.getItem("items2")) || [];
   }
   cartTable.innerHTML = "";
   items2.forEach((item, i) => {
@@ -176,7 +176,7 @@ function showCart(items2) {
                           </tr>
                         `;
   });
-  console.log(items2);
+  console.log('items2', items2);
   if (items2.length >= 1) {
     cartTable.innerHTML += `
                             <td class="text-dark border">Productos en el carrito: ${cart.length}</td>
