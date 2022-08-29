@@ -1,16 +1,33 @@
-
 function addItemToCart() {
   const add = document.querySelectorAll(".add");
   result.forEach((prod, i) => {
     add.forEach((item, i) => {
       item.addEventListener("click", (e) => {
+        let newTitle = prod.title.split(" ");
+        newTitle = newTitle
+          .slice(0, 3)
+          .toString()
+          .replaceAll(",", " ")
+          .replaceAll("-", "")
+          .replaceAll(".", "");
         if (prod.id_item === e.target.id) {
           cart.push(prod);
           totalCart += prod.price;
           cartDetail();
           showCart(items2);
           showItemsCountCart();
+
+          Toastify({
+            text: "Agregaste " + newTitle + " al carrito",
+            className: "warning",
+            gravity: "top", // `top` or `bottom`
+            position: "right", //
+            style: {
+              background: "black",
+            },
+          }).showToast();
         }
+        toastSwal("probando", "warn");
         localStorage.setItem("cart2", JSON.stringify(cart));
       });
     });
@@ -24,13 +41,11 @@ function clearAllCartItems() {
   let cart = [];
   items.splice(0, items.length);
   localStorage.clear();
-  addItemToCart()
+  addItemToCart();
   showCart(items);
   cartDetail(items);
   showItemsCountCart(cart);
-
 }
-
 
 function cartDetail(items) {
   items = [];
@@ -55,7 +70,7 @@ function cartDetail(items) {
       localStorage.setItem("items2", JSON.stringify(items));
     }
   });
-  console.log("items ",items);
+  console.log("items ", items);
 }
 
 function removeItemFromCart() {
@@ -89,9 +104,8 @@ function showItemsCountCart() {
     cart2 = JSON.parse(localStorage.getItem("cart2"));
   }
   let totalItemsOnCart = 0;
-  cart2.length > 0 ? totalItemsOnCart = cart.length : totalItemsOnCart = 0;
+  cart2.length > 0 ? (totalItemsOnCart = cart.length) : (totalItemsOnCart = 0);
   let show = (innerText = "");
   show = count.innerText = totalItemsOnCart;
 }
 showItemsCountCart();
-
