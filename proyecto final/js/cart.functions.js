@@ -89,11 +89,7 @@ function showItemsCountCart() {
     cart2 = JSON.parse(localStorage.getItem("cart2"));
   }
   let totalItemsOnCart = 0;
-  if (cart2.length > 0) {
-    totalItemsOnCart = cart.length;
-  } else {
-    totalItemsOnCart = 0;
-  }
+  cart2.length > 0 ? totalItemsOnCart = cart.length : totalItemsOnCart = 0;
   let show = (innerText = "");
   show = count.innerText = totalItemsOnCart;
 }
