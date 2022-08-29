@@ -27,7 +27,6 @@ function addItemToCart() {
             },
           }).showToast();
         }
-        toastSwal("probando", "warn");
         localStorage.setItem("cart2", JSON.stringify(cart));
       });
     });
@@ -36,14 +35,11 @@ function addItemToCart() {
 addItemToCart();
 
 function clearAllCartItems() {
-  let items = [];
-  let cart = [];
+  totalCart = 0;
   items.splice(0, items.length);
   cart.splice(0, cart.length);
   localStorage.clear();
-  addItemToCart();
   showCart(items);
-  cartDetail(items);
   showItemsCountCart(cart);
 }
 
@@ -70,7 +66,11 @@ function cartDetail(items) {
       localStorage.setItem("items2", JSON.stringify(items));
     }
   });
+  items.splice(0, items.length);
+
   console.log("items ", items);
+  console.log("cart ", cart);
+
 }
 
 function removeItemFromCart() {
@@ -97,7 +97,6 @@ function removeItemFromCart() {
   }
 }
 
-let cart2 = [];
 
 function showItemsCountCart() {
   const count = document.getElementById("cartCount");
