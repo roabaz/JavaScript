@@ -34,6 +34,22 @@ function addItemToCart() {
 }
 addItemToCart();
 
+function addMoreItems() {
+  const addMore = document.querySelectorAll(".addMore");
+  result.forEach((prod, i) => {
+    addMore.forEach((item, i) => {
+      item.addEventListener("click", (e) => {
+        if (prod.id_item === e.target.id) {
+          cart.push(prod);
+          totalCart += prod.price;
+          cartDetail();
+          showCart(items2);
+          showItemsCountCart();
+        }
+      });
+    });
+  });
+}
 function clearAllCartItems() {
   totalCart = 0;
   items.splice(0, items.length);
@@ -67,41 +83,39 @@ function cartDetail(items) {
     }
   });
   items.splice(0, items.length);
-
-  console.log("items ", items);
-  console.log("cart ", cart);
-
+  removeItemFromCart();
 }
 
 function removeItemFromCart() {
+  console.log("cart", cart);
+
   if (cart.length > 0) {
     let rem = document.querySelectorAll(".remove");
-    let items2 = JSON.parse(localStorage.getItem("items2"));
     rem.forEach((item, i) => {
       item.addEventListener("click", (e) => {
+        console.log("item", item);
         let remove = e.target.id;
-        const index = items2.findIndex((item) => {
-          if (totalCart > 0) {
-            this.quantity -= 1;
-            this.totalItem -= item.price;
-            totalCart -= item.price;
-          }
-          return item.id === remove;
+        console.log("remove", remove);
+        cart.forEach((item, i) => {
+          if (item.id_item === remove) cart.splice(i, 1);
+          console.log(i);
         });
-        items2.splice(index, 1);
         showItemsCountCart(cart);
-        cartDetail(quantity, totalItem);
-        showCart(items2);
+        cartDetail();
+        showCart();
       });
     });
   }
 }
 
-
 function showItemsCountCart() {
   const count = document.getElementById("cartCount");
   let totalItemsOnCart = 0;
-  if (cart.length > 0) {totalItemsOnCart = cart.length} else{ totalItemsOnCart = 0};
+  if (cart.length > 0) {
+    totalItemsOnCart = cart.length;
+  } else {
+    totalItemsOnCart = 0;
+  }
   let show = (innerText = "");
   show = count.innerText = totalItemsOnCart;
 }

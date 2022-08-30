@@ -58,7 +58,6 @@ let viewer = new IntersectionObserver(
     items.forEach((item) => {
       if (item.isIntersecting && result.length > limit) {
         limit += 20;
-        console.log(results);
         result = results.length > 0 ? (result = results) : (result = products);
         validatesizesSearchResult(result);
         addItemToCart();
@@ -167,17 +166,18 @@ function showCart(items2) {
   }
   cartTable.innerHTML = "";
   items2.forEach((item, i) => {
+   if (cart.length > 0){
     cartTable.innerHTML += ` 
                         <tr>
                           <td class="mr-3 border">${item.title}</td>
                           <td class="mr-3 border">$${item.total}</td>
                           <td class="mr-3 border">${item.quantity}</td>
-                         
+                          <button id="${item.id}" onclick="addMoreItems()" class="addMore mr-3 border btn btn-success">Agregar</button>
+                          <button id="${item.id}" onclick="removeItemFromCart()" class="remove mr-3 border btn btn-danger">Borrar</button>
                           </tr>
-                        `;
+                        `;}
   });
-  console.log('items2', items2);
-  if (items2.length >= 1) {
+  if (cart.length > 0) {
     cartTable.innerHTML += `
                             <td class="text-dark border">Productos en el carrito: ${cart.length}</td>
                             <b><td class="text-dark border">Total: $${totalCart}</td></b>
@@ -189,11 +189,11 @@ function showCart(items2) {
                             <td class="alert alert-info">0</td>
                           `;
   }
+  addMoreItems();
 }
 
 /* WIP */
-/* <button id="${item.id_item}" onclick="addItemToCart()" class="add mr-3 border btn btn-success">Agregar</button>
-<button id="${item.id}" onclick="removeItemFromCart()" class="remove mr-3 border btn btn-danger">Borrar</button> */
+/*  */
 
 /*
  */
