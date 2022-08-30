@@ -71,3 +71,8 @@
 .active, button:hover {
   background-color: green;
 }
+
+img {
+  margin: auto;
+  display: block;
+  }
