@@ -77,11 +77,6 @@ function loadAllProductsOnMain(results, q) {
   let showFullPrice = "";
   let result;
   items.innerHTML = "";
-  /*   if (results) {
-    result = results;
-  } else {
-    result = products;
-  } */
 
   result = results.length > 0 ? (result = results) : (result = products);
 
@@ -106,9 +101,6 @@ function loadAllProductsOnMain(results, q) {
       .replaceAll("-", "")
       .replaceAll(".", "");
 
-    /*     onclick="itemDetail(${
-      item.id_item
-    })" */
     if (items && i < limit) {
       items.innerHTML += `
                       <div class="card item mx-auto my-auto mb-3 col-xl-3 col-6 cursor-auto">
@@ -134,8 +126,6 @@ function loadAllProductsOnMain(results, q) {
 
   const product = document.querySelectorAll(".card");
   let lastProduct = product[product.length - 1];
-  /*   console.log(product);
-  console.log(lastProduct); */
   viewer.observe(lastProduct);
 
   let message = "";
@@ -166,8 +156,8 @@ function showCart(items2) {
   }
   cartTable.innerHTML = "";
   items2.forEach((item, i) => {
-   if (cart.length > 0){
-    cartTable.innerHTML += ` 
+    if (cart.length > 0) {
+      cartTable.innerHTML += ` 
                         <tr>
                           <td class="mr-3 border">${item.title}</td>
                           <td class="mr-3 border">$${item.total}</td>
@@ -175,7 +165,8 @@ function showCart(items2) {
                           <button id="${item.id}" onclick="addMoreItems()" class="addMore mr-3 border btn btn-success">Agregar</button>
                           <button id="${item.id}" onclick="removeItemFromCart()" class="remove mr-3 border btn btn-danger">Borrar</button>
                           </tr>
-                        `;}
+                        `;
+    }
   });
   if (cart.length > 0) {
     cartTable.innerHTML += `
@@ -191,9 +182,3 @@ function showCart(items2) {
   }
   addMoreItems();
 }
-
-/* WIP */
-/*  */
-
-/*
- */
