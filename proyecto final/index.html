@@ -26,10 +26,10 @@
         <script defer src="js/products.items.js"></script>
         <script defer src="js/classes/product.class.js"></script>
         <script defer src="js/functions/dom.js"></script>
-        <script defer src="js/functions/search.functions.js"></script>
-        <script defer src="js/functions/filters.functions.js"></script>
+        <script defer src="js/functions/search.js"></script>
+        <script defer src="js/functions/filters.js"></script>
         <script defer src="js/classes/cart.class.js"></script>
-        <script defer src="js/functions/cart.functions.js"></script>
+        <script defer src="js/functions/cart.js"></script>
         <script defer src="js/utils/return_to_top.js"></script>
     </head>
 
@@ -85,7 +85,15 @@
         </div>
 
 
+
         <div class="container p-4">
+
+            <div class="text-center">
+            <a href="register.html"><i class="fa-solid fa-registered"></i></a>
+            <a href="login.html"><i class="fa-solid fa-door-open"></i></a>
+            </div>
+
+
             <div class="text-center">
                 <span id="cartCount" class="countCart"> </span>
                 <button onclick="cartDetail()" data-bs-toggle="modal"

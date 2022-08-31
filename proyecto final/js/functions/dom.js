@@ -1,3 +1,4 @@
+
 function viewAllcategories() {
   let categories = [];
   const categories_element = document.getElementById("categories");
