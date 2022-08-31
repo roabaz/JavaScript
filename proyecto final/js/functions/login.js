@@ -14,10 +14,9 @@ function login() {
     console.log(passwordData);
   });
 
-  let data = JSON.parse(localStorage.getItem("users")) || [];
 
   if (emailData && passwordData){
-  data.forEach((element) => {
+    users.forEach((element) => {
     if ((element.email === emailData) && (atob(element.password) === passwordData) ){
       window.location.href = "admin.html";
     }else{

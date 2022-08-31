@@ -152,12 +152,13 @@ function itemDetail(id) {
 
 function showCart(items2) {
   const cartTable = document.getElementById("cartTable");
-  if (localStorage.items2) {
-    items2 = JSON.parse(localStorage.getItem("items2")) || [];
-  }
+
+  items2 = JSON.parse(localStorage.getItem("items2")) || [];
+
   cartTable.innerHTML = "";
+  console.log(items2.length);
   items2.forEach((item, i) => {
-    if (cart.length > 0) {
+    if (items2.length > 0) {
       cartTable.innerHTML += ` 
                         <tr>
                           <td class="mr-3 border">${item.title}</td>
@@ -169,12 +170,12 @@ function showCart(items2) {
                         `;
     }
   });
-  if (cart.length > 0) {
+  if (cart2.length > 0) {
     cartTable.innerHTML += `
-                            <td class="text-dark border">Productos en el carrito: ${cart.length}</td>
+                            <td class="text-dark border">Productos en el carrito: ${cart2.length}</td>
                             <b><td class="text-dark border">Total: $${totalCart}</td></b>
                             `;
-  } else if (items2.length === 0) {
+  } else if (cart2.length === 0) {
     cartTable.innerHTML = `
                             <td class="alert alert-info">Agrega productos al carrito</td>
                             <td class="alert alert-info">0</td>

@@ -1,8 +1,4 @@
-let emailData = "";
-let passwordData = "";
-let id = 0;
-let exist = false;
-let users = [];
+
 
 function register() {
   const email = document.querySelector("#inputEmail");
@@ -10,10 +6,10 @@ function register() {
   const message = document.querySelector("#message");
   let now = new Date();
   id = getRandomInt(9999);
-  email.addEventListener("input", (e) => {
+  email.addEventListener("change", (e) => {
     emailData = e.target.value;
   });
-  password.addEventListener("input", (e) => {
+  password.addEventListener("change", (e) => {
     passwordData = btoa(e.target.value);
   });
   exist = users.some((prod) => emailData === prod.email);

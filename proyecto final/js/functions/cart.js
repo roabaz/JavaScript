@@ -15,7 +15,6 @@ function addItemToCart() {
           totalCart += prod.price;
           cartDetail();
           showCart(items2);
-          showItemsCountCart();
 
           Toastify({
             text: "Agregaste " + newTitle + " al carrito",
@@ -28,6 +27,8 @@ function addItemToCart() {
           }).showToast();
         }
         localStorage.setItem("cart2", JSON.stringify(cart));
+        showItemsCountCart(cart2);
+
       });
     });
   });
@@ -44,7 +45,7 @@ function addMoreItems() {
           totalCart += prod.price;
           cartDetail();
           showCart(items2);
-          showItemsCountCart();
+          showItemsCountCart(cart2);
         }
       });
     });
@@ -55,8 +56,8 @@ function clearAllCartItems() {
   items.splice(0, items.length);
   cart.splice(0, cart.length);
   localStorage.clear();
+  showItemsCountCart(cart2);
   showCart(items);
-  showItemsCountCart(cart);
 }
 
 function cartDetail(items) {
@@ -83,6 +84,7 @@ function cartDetail(items) {
     }
   });
   items.splice(0, items.length);
+  showCart(items2)
   removeItemFromCart();
 }
 
@@ -100,7 +102,7 @@ function removeItemFromCart() {
           if (item.id_item === remove) cart.splice(i, 1);
           console.log(i);
         });
-        showItemsCountCart(cart);
+        showItemsCountCart(cart2);
         cartDetail();
         showCart();
       });
@@ -110,9 +112,11 @@ function removeItemFromCart() {
 
 function showItemsCountCart() {
   const count = document.getElementById("cartCount");
+  cart2 = JSON.parse(localStorage.getItem("cart2")) || [];
+
   let totalItemsOnCart = 0;
-  if (cart.length > 0) {
-    totalItemsOnCart = cart.length;
+  if (cart2.length > 0) {
+    totalItemsOnCart = cart2.length;
   } else {
     totalItemsOnCart = 0;
   }
