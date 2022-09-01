@@ -34,6 +34,24 @@ function addItemToCart() {
 }
 addItemToCart();
 
+function removeItemFromCart() {
+  const rem = document.querySelectorAll(".remove");
+  rem.forEach((item, i) => {
+    item.addEventListener("click", (e) => {
+      let remove = e.target.id;
+      let elem = cart.find((el) => (el.id_item = remove));
+      let i = cart.indexOf(elem[0]);
+      console.log(i);
+      totalCart -= elem.price;
+      cart.splice(i, 1);
+      localStorage.setItem("cart2", JSON.stringify(cart));
+      showCart();
+      showItemsCountCart();
+      cartDetail();
+    });
+  });
+}
+
 function addMoreItems() {
   const addMore = document.querySelectorAll(".addMore");
   result.forEach((prod, i) => {
@@ -41,15 +59,19 @@ function addMoreItems() {
       item.addEventListener("click", (e) => {
         if (prod.id_item === e.target.id) {
           cart.push(prod);
+          cart2 = JSON.parse(localStorage.getItem("cart2")) || [];
+
+          localStorage.setItem("cart2", JSON.stringify(cart));
           totalCart += prod.price;
+          showItemsCountCart();
           cartDetail();
           showCart(items2);
-          showItemsCountCart(cart2);
         }
       });
     });
   });
 }
+
 function clearAllCartItems() {
   totalCart = 0;
   items.splice(0, items.length);
@@ -60,6 +82,8 @@ function clearAllCartItems() {
 }
 
 function cartDetail(items) {
+  console.log("cart", cart);
+
   items = [];
   cart.forEach((item, i) => {
     const exist = items.some((prod) => prod.id === item.id_item);
@@ -84,36 +108,14 @@ function cartDetail(items) {
   });
   items.splice(0, items.length);
   showCart(items2);
-  removeItemFromCart();
 }
 
-function removeItemFromCart() {
-  console.log("cart", cart);
-
-  if (cart.length > 0) {
-    let rem = document.querySelectorAll(".remove");
-    rem.forEach((item, i) => {
-      item.addEventListener("click", (e) => {
-        console.log("item", item);
-        let remove = e.target.id;
-        console.log("remove", remove);
-        cart.forEach((item, i) => {
-          if (item.id_item === remove) cart.splice(i, 1);
-          console.log(i);
-        });
-        showItemsCountCart(cart2);
-        cartDetail();
-        showCart();
-      });
-    });
-  }
-}
+let totalItemsOnCart = 0;
 
 function showItemsCountCart() {
   const count = document.getElementById("cartCount");
   cart2 = JSON.parse(localStorage.getItem("cart2")) || [];
 
-  let totalItemsOnCart = 0;
   if (cart2.length > 0) {
     totalItemsOnCart = cart2.length;
   } else {

@@ -155,7 +155,6 @@ function showCart(items2) {
   items2 = JSON.parse(localStorage.getItem("items2")) || [];
 
   cartTable.innerHTML = "";
-  console.log(items2.length);
   items2.forEach((item, i) => {
     if (items2.length > 0) {
       cartTable.innerHTML += ` 
@@ -182,4 +181,5 @@ function showCart(items2) {
                           `;
   }
   addMoreItems();
+  removeItemFromCart();
 }

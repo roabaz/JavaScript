@@ -1,4 +1,4 @@
-let totalCart = 1;
+let totalCart = 0;
 let totalItem = 0;
 let q = "";
 let gender = "";
@@ -9,9 +9,10 @@ let items = [];
 let result = [];
 let results = [];
 let items2 = JSON.parse(localStorage.getItem("items2")) || [];
-let cart2 = JSON.parse(localStorage.getItem("cart2")) || [];
+let cart2 =  [];
 let users = JSON.parse(localStorage.getItem("users")) || [];
 let emailData = "";
 let passwordData = "";
 let id = 0;
 let exist = false;
+totalItemsOnCart = 0;

@@ -38,9 +38,11 @@
                 class="fa-solid fa-circle-arrow-up h3"></i></button>
         <div class="container-fluid text-white bg-primary p-3">
             <div class='mx-auto'>
-                <a href="index.html"><img src="resources/img/logo.webp" height="100" class="img"></a>
+                <a href="index.html"><img src="resources/img/logo.webp"
+                        height="100" class="img"></a>
             </div>
-            <a href="index.html"><h1 class="text-center p-4 text-white">Cubic eCommerce</h1></a>
+            <a href="index.html"><h1 class="text-center p-4 text-white">Cubic
+                    eCommerce</h1></a>
             <div class="row col-xl-5 col-12 mx-auto text-center">
                 <div class="form-group">
                     <input class="col-3 form-control" type="search"
@@ -85,29 +87,33 @@
         </div>
 
 
-
+  
         <div class="container p-4">
+            <div class="mx-auto text-center alert alert-info col-3">
+                <a class="p-3" href="register.html"><i class="fa-solid fa-registered"></i>
+                    Registro</a>
+    
+                <a class="p-3" href="login.html"><i class="fa-solid fa-door-open"></i>
+                    Login</a>
 
-            <div class="text-center">
-            <a href="register.html"><i class="fa-solid fa-registered"></i></a>
-            <a href="login.html"><i class="fa-solid fa-door-open"></i></a>
-            </div>
+                </div>
 
+                <div class="mx-auto text-center m-3">
+                    
+                    <button onclick="cartDetail()" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" class="fa-solid mx-auto
+                        text-center
+                        fa-cart-shopping
+                        btn btn-light">
+                        <span id="cartCount" class="countCart mx-auto col-1">
+                        </span> carrito
+                    </button>
+                </div>
 
-            <div class="text-center">
-                <span id="cartCount" class="countCart"> </span>
-                <button onclick="cartDetail()" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal" class="fa-solid
-                    fa-cart-shopping
-                    btn btn-light">
-                </button>
-            </div>
-            <div class="mx-auto text-center m-3">
-                <button class="btn btn-dark " onclick="cleanFilters()">Limpiar
-                    filtros
-                </button>
-            </div>
+            
+
             <div class="alert alert-dark">
+              
                 <h5 class="text-center">Genero</h5>
                 <div class="text-center" id="gender">
 
@@ -123,6 +129,11 @@
                 <div class="text-center" id="categories">
 
                 </div>
+                <div class="mx-auto text-center m-3">
+                    <button class="btn btn-dark " onclick="cleanFilters()">Limpiar
+                        filtros
+                    </button>
+                </div>
             </div>
 
             <div class="text-center" id="productsQuantity">
@@ -132,11 +143,8 @@
             <div class="row m-5 mx-auto " id="main">
 
             </div>
-
-
+            
         </div>
-
-
 
         <footer class="bg-primary p-4 text-white text-center">
             <h4>Estudiante => Rodrigo Abaz</h4>
