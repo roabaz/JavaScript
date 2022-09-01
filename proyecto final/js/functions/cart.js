@@ -28,7 +28,6 @@ function addItemToCart() {
         }
         localStorage.setItem("cart2", JSON.stringify(cart));
         showItemsCountCart(cart2);
-
       });
     });
   });
@@ -84,7 +83,7 @@ function cartDetail(items) {
     }
   });
   items.splice(0, items.length);
-  showCart(items2)
+  showCart(items2);
   removeItemFromCart();
 }
 

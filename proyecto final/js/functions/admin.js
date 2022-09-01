@@ -41,7 +41,6 @@ function addNewProduct() {
     console.log(idData);
   });
 
-
   category.addEventListener("input", (e) => {
     categoryData = e.target.value;
     console.log(categoryData);
@@ -79,7 +78,6 @@ function addNewProduct() {
     console.log(descriptionData);
   });
 
-
   document.getElementById("file").addEventListener("change", (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -99,26 +97,26 @@ function addNewProduct() {
   });
 
   let now = new Date();
-if (descriptionData != ""){
-  newProducts.push(new NewProduct(
-    now,
-    idData,
-    titleData,
-    priceData,
-    fullPriceData,
-    base64String,
-    descriptionData,
-    discountData,
-    brandData,
-    shipData,
-    genderData,
-    categoryData,
-    colorData
-  ));
-}
+  if (descriptionData != "") {
+    newProducts.push(
+      new NewProduct(
+        now,
+        idData,
+        titleData,
+        priceData,
+        fullPriceData,
+        base64String,
+        descriptionData,
+        discountData,
+        brandData,
+        shipData,
+        genderData,
+        categoryData,
+        colorData
+      )
+    );
+  }
   console.log(newProducts);
-
 }
 
-
-addNewProduct()
+addNewProduct();

@@ -1,5 +1,15 @@
 class CartItem {
-  constructor(id, id_item, title, price, size, gender, category, quantity, total) {
+  constructor(
+    id,
+    id_item,
+    title,
+    price,
+    size,
+    gender,
+    category,
+    quantity,
+    total
+  ) {
     this.id = id;
     this.id = id_item;
     this.title = title;

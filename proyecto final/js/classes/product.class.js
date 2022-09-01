@@ -38,7 +38,6 @@ class Product {
   }
 }
 
-
 class NewProduct {
   constructor(
     id,

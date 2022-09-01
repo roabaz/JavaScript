@@ -12,7 +12,7 @@ function searchAndDisplayProducts(q) {
       }
     });
   });
-  
+
   validatesizesSearchResult(result, q);
 }
 
@@ -38,4 +38,3 @@ function getSearch() {
 }
 
 getSearch();
-

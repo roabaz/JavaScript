@@ -11,7 +11,7 @@ function showDetail() {
                             ${item.currency + " " + item.full_price}
                           </span>
                           <span class="text-danger h5">
-                            ${"Descuento "+item.discount+"%"}
+                            ${"Descuento " + item.discount + "%"}
                           </span>
                       `;
     } else {
@@ -19,8 +19,8 @@ function showDetail() {
     }
 
     if (item.description != "") {
-     description = `<hr> <p class="sizes text-center mt-2">Descripcion: ${item.description}</p>`;
-    }else {
+      description = `<hr> <p class="sizes text-center mt-2">Descripcion: ${item.description}</p>`;
+    } else {
       description = "";
     }
 
@@ -36,23 +36,33 @@ function showDetail() {
       detail.innerHTML += ` 
                             <div class="row">
                               <div class="col-5">
-                                  <img src="${item.pic}" width="368" height="400">
+                                  <img src="${
+                                    item.pic
+                                  }" width="368" height="400">
                                   <b><p class="mt-2 text-dark">${newTitle}</p></b>
                               </div>
                               <div class="col-7">
-                                  <p class="sizes text-center mt-5">Precio: ${item.currency + " " + item.price}</p>
+                                  <p class="sizes text-center mt-5">Precio: ${
+                                    item.currency + " " + item.price
+                                  }</p>
                                   ${showFullPrice}
                                   
                                   ${description}
                                   <hr>
                                   <p class="sizes text-center mt-2">Talles: ${itemSizes}</p>
                                   <hr>
-                                  <p class="sizes text-center mt-2">Color: ${item.colors}</p>
+                                  <p class="sizes text-center mt-2">Color: ${
+                                    item.colors
+                                  }</p>
                                  
                                   <hr>
-                                  <p class="sizes text-center mt-2">Marca: ${item.brand}</p>
+                                  <p class="sizes text-center mt-2">Marca: ${
+                                    item.brand
+                                  }</p>
                                   <hr>
-                                  <p class="sizes text-center mt-2">${item.ship}</p>
+                                  <p class="sizes text-center mt-2">${
+                                    item.ship
+                                  }</p>
                               </div>
                             </div>
                           `;

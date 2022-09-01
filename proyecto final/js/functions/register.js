@@ -1,5 +1,3 @@
-
-
 function register() {
   const email = document.querySelector("#inputEmail");
   const password = document.querySelector("#inputPassword");
@@ -13,13 +11,13 @@ function register() {
     passwordData = btoa(e.target.value);
   });
   exist = users.some((prod) => emailData === prod.email);
- console.log(exist);
+  console.log(exist);
   message.innerHTML = "";
-      if (emailData != "" && passwordData != "" && exist === false) {
-      users.push(new User(id, emailData, passwordData, now));
-      message.innerHTML += `<p class="alert alert-success"> Tu cuenta fue creada exitosamente!!!</p>`;
-    }else if(exist) {
-      message.innerHTML += `<p class="alert alert-warning"> Email registrado, proporciona otro</p>`;
+  if (emailData != "" && passwordData != "" && exist === false) {
+    users.push(new User(id, emailData, passwordData, now));
+    message.innerHTML += `<p class="alert alert-success"> Tu cuenta fue creada exitosamente!!!</p>`;
+  } else if (exist) {
+    message.innerHTML += `<p class="alert alert-warning"> Email registrado, proporciona otro</p>`;
   }
 
   localStorage.setItem("users", JSON.stringify(users));

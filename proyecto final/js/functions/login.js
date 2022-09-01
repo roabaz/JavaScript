@@ -1,6 +1,3 @@
-let emailData = "";
-let passwordData = "";
-
 function login() {
   const email = document.querySelector("#inputEmail");
   const password = document.querySelector("#inputPassword");
@@ -14,18 +11,18 @@ function login() {
     console.log(passwordData);
   });
 
-
-  if (emailData && passwordData){
+  if (emailData && passwordData) {
     users.forEach((element) => {
-    if ((element.email === emailData) && (atob(element.password) === passwordData) ){
-      window.location.href = "admin.html";
-    }else{
-      alert("contrasenia o email incorrecto.");
-    }
-  });
-}
-
+      if (
+        element.email === emailData &&
+        atob(element.password) === passwordData
+      ) {
+        window.location.href = "admin.html";
+      } else {
+        alert("contrasenia o email incorrecto.");
+      }
+    });
+  }
 }
 
 login();
-
