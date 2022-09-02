@@ -40,8 +40,7 @@ function removeItemFromCart() {
     item.addEventListener("click", (e) => {
       let remove = e.target.id;
       let elem = cart.find((el) => (el.id_item = remove));
-      let i = cart.indexOf(elem[0]);
-      console.log(i);
+      let i = cart.indexOf(elem[-1]);
       totalCart -= elem.price;
       cart.splice(i, 1);
       localStorage.setItem("cart2", JSON.stringify(cart));
@@ -49,6 +48,10 @@ function removeItemFromCart() {
       showItemsCountCart();
       cartDetail();
     });
+
+    if (cart.length < 1) {
+      clearAllCartItems();
+    }
   });
 }
 
@@ -83,7 +86,7 @@ function clearAllCartItems() {
 
 function cartDetail(items) {
   console.log("cart", cart);
-
+  cart2 = JSON.parse(localStorage.getItem("cart2")) || [];
   items = [];
   cart.forEach((item, i) => {
     const exist = items.some((prod) => prod.id === item.id_item);
