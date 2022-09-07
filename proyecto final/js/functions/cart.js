@@ -42,16 +42,13 @@ function removeItemFromCart() {
       let elem = cart.find((el) => (el.id_item = remove));
       let i = cart.indexOf(elem[-1]);
       totalCart -= elem.price;
-      cart.splice(i, 1);
-      localStorage.setItem("cart2", JSON.stringify(cart));
+          cart.splice(i, 1);
+          localStorage.setItem("cart2", JSON.stringify(cart));
       showCart();
       showItemsCountCart();
       cartDetail();
     });
 
-    if (cart.length < 1) {
-      clearAllCartItems();
-    }
   });
 }
 
@@ -79,7 +76,8 @@ function clearAllCartItems() {
   totalCart = 0;
   items.splice(0, items.length);
   cart.splice(0, cart.length);
-  localStorage.clear();
+  localStorage.removeItem("items2");
+  localStorage.removeItem("cart2");
   showItemsCountCart(cart2);
   showCart(items);
 }
@@ -87,6 +85,7 @@ function clearAllCartItems() {
 function cartDetail(items) {
   console.log("cart", cart);
   cart2 = JSON.parse(localStorage.getItem("cart2")) || [];
+  items2 = JSON.parse(localStorage.getItem("items2")) || [];
   items = [];
   cart.forEach((item, i) => {
     const exist = items.some((prod) => prod.id === item.id_item);
@@ -99,9 +98,7 @@ function cartDetail(items) {
           item.id_item,
           item.title,
           item.price,
-          item.size,
-          item.gender,
-          item.category,
+          item.pic,
           quantity,
           totalItem
         )
