@@ -60,7 +60,6 @@ let viewer = new IntersectionObserver(
         limit += 20;
         result = results.length > 0 ? (result = results) : (result = products);
         validatesizesSearchResult(result);
-        addItemToCart();
       }
     });
   },
@@ -128,7 +127,7 @@ function loadAllProductsOnMain(results, q) {
                     `;
         }
       });
-
+      addItemToCart();
       const product = document.querySelectorAll(".card");
       let lastProduct = product[product.length - 1];
       viewer.observe(lastProduct);

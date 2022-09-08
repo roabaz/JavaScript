@@ -1,8 +1,8 @@
 function addItemToCart() {
   const add = document.querySelectorAll(".add");
   result.forEach((prod, i) => {
-    add.forEach((item, i) => {
-      item.addEventListener("click", (e) => {
+    add.forEach((items, i) => {
+      items.addEventListener("click", (e) => {
         let newTitle = prod.title.split(" ");
         newTitle = newTitle
           .slice(0, 3)
@@ -14,8 +14,7 @@ function addItemToCart() {
           cart.push(prod);
           totalCart += prod.price;
           cartDetail();
-          showCart(items2);
-
+          showCart();
           Toastify({
             text: "Agregaste " + newTitle + " al carrito",
             className: "warning",
@@ -32,7 +31,7 @@ function addItemToCart() {
     });
   });
 }
-addItemToCart();
+
 
 function removeItemFromCart() {
   const rem = document.querySelectorAll(".remove");
@@ -40,7 +39,7 @@ function removeItemFromCart() {
     item.addEventListener("click", (e) => {
       let remove = e.target.id;
       let elem = cart.find((el) => (el.id_item = remove));
-      let i = cart.indexOf(elem);
+      let i = cart.indexOf(elem[0]);
       totalCart -= elem.price;
       cart.splice(i, 1);
       localStorage.setItem("cart2", JSON.stringify(cart));
