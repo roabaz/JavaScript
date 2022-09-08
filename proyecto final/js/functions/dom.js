@@ -72,37 +72,42 @@ let viewer = new IntersectionObserver(
 
 let limit = 20;
 function loadAllProductsOnMain(results, q) {
-  const items = document.getElementById("main");
-  const quantity = document.getElementById("productsQuantity");
-  let showFullPrice = "";
-  let result;
-  items.innerHTML = "";
+  fetch("js/products.json")
+    .then((response) => response.json())
+    .then((data) => {
+     let products = data;
 
-  result = results.length > 0 ? (result = results) : (result = products);
+      const items = document.getElementById("main");
+      const quantity = document.getElementById("productsQuantity");
+      let showFullPrice = "";
+      let result;
+      items.innerHTML = "";
 
-  result.forEach((item, i) => {
-    let itemSizes = item.sizes.join(" | ");
-    if (item.full_price != "") {
-      showFullPrice = `
+      result = results.length > 0 ? (result = results) : (result = products);
+
+      result.forEach((item, i) => {
+        let itemSizes = item.sizes.join(" | ");
+        if (item.full_price != "") {
+          showFullPrice = `
                           <span class="muted">
                             ${item.currency + " " + item.full_price}
                           </span>
                       `;
-    } else {
-      showFullPrice = "";
-    }
-    viewAllSizes(result, q);
+        } else {
+          showFullPrice = "";
+        }
+        viewAllSizes(result, q);
 
-    let newTitle = item.title.split(" ");
-    newTitle = newTitle
-      .slice(0, 3)
-      .toString()
-      .replaceAll(",", " ")
-      .replaceAll("-", "")
-      .replaceAll(".", "");
+        let newTitle = item.title.split(" ");
+        newTitle = newTitle
+          .slice(0, 3)
+          .toString()
+          .replaceAll(",", " ")
+          .replaceAll("-", "")
+          .replaceAll(".", "");
 
-    if (items && i < limit) {
-      items.innerHTML += `
+        if (items && i < limit) {
+          items.innerHTML += `
                       <div class="card item mx-auto my-auto mb-3 col-xl-3 col-6 cursor-auto">
                       <a href="item.html" onclick="itemDetail(${item.id})" >
                         <img class="item__img" src="${item.pic}">
@@ -121,22 +126,23 @@ function loadAllProductsOnMain(results, q) {
                         }" class="add fa-solid fa-circle-plus mt-2 btn btn-info"></button>
                       </div>
                     `;
-    }
-  });
+        }
+      });
 
-  const product = document.querySelectorAll(".card");
-  let lastProduct = product[product.length - 1];
-  viewer.observe(lastProduct);
+      const product = document.querySelectorAll(".card");
+      let lastProduct = product[product.length - 1];
+      viewer.observe(lastProduct);
 
-  let message = "";
-  if (result.length > 0) {
-    message = `Encontramos ${result.length} productos`;
-  } else if (result.length == 0) {
-    message = `Intenta buscando otro producto`;
-  }
-  if (quantity) {
-    quantity.innerHTML = `<p class="mt-4 alert alert-success col-xl-3 col-12 mx-auto">${message}</p>`;
-  }
+      let message = "";
+      if (result.length > 0) {
+        message = `Encontramos ${result.length} productos`;
+      } else if (result.length == 0) {
+        message = `Intenta buscando otro producto`;
+      }
+      if (quantity) {
+        quantity.innerHTML = `<p class="mt-4 alert alert-success col-xl-3 col-12 mx-auto">${message}</p>`;
+      }
+    });
 }
 
 let itemsViewed = [];

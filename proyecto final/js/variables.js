@@ -15,4 +15,4 @@ let emailData = "";
 let passwordData = "";
 let id = 0;
 let exist = false;
-totalItemsOnCart = 0;
+/* let products = []; */
