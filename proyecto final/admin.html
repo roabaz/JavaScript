@@ -27,70 +27,89 @@
         <div class="container mx-auto p-4 alert alert-primary">
             <a href="index.html"><img src="resources/img/logo.webp" height="100"
                     class="img"></a>
-            <a href="admin.html"><h1 class="text-center p-4">ADMIN</h1></a>
+            <a href="admin.html"><h1 class="text-center p-4">Agregar productos</h1></a>
             <div class="row">
                 <div class="mb-3 col-3">
                     <label for="exampleFormControlInput1" class="form-label">Titulo</label>
-                    <input type="text" class="form-control" id="title">
+                    <input value="Pantalon" type="text" class="form-control" id="title">
                 </div>
                 <div class="mb-3 col-2">
-                    <label for="exampleFormControlInput1" class="form-label">id item</label>
-                    <input type="text" class="form-control" id="id">
+                    <label for="exampleFormControlInput1" class="form-label">id
+                        item</label>
+                    <input value="10" type="text" class="form-control" id="id">
                 </div>
 
                 <div class="mb-3 col-2">
                     <label for="exampleFormControlInput1" class="form-label">categoria</label>
-                    <input type="text" class="form-control" id="category">
+                    <input value="Pantalones" type="text" class="form-control" id="category">
                 </div>
 
                 <div class="mb-3 col-2">
                     <label for="exampleFormControlInput1" class="form-label">Marca</label>
-                    <input type="text" class="form-control" id="brand">
+                    <input value="only" type="text" class="form-control" id="brand">
                 </div>
                 <div class="mb-3 col-3">
                     <label for="exampleFormControlInput1" class="form-label">Color</label>
-                    <input type="text" class="form-control" id="color">
+                    <input value="blanco" type="text" class="form-control" id="color">
                 </div>
                 <div class="mb-3 col-3">
                     <label for="exampleFormControlInput1" class="form-label">Genero</label>
-                    <input type="text" class="form-control" id="gender">
+                    <input value="Mujer" type="text" class="form-control" id="gender">
                 </div>
                 <div class="mb-3 col-3">
                     <label for="exampleFormControlInput1" class="form-label">Precio
                         Lista</label>
-                    <input type="text" class="form-control" id="fullPrice">
+                    <input value="1500" type="text" class="form-control" id="fullPrice">
                 </div>
                 <div class="mb-3 col-3">
                     <label for="exampleFormControlInput1" class="form-label">Precio
                         Venta</label>
-                    <input type="text" class="form-control" id="price">
+                    <input value="1300" type="text" class="form-control" id="price">
                 </div>
 
                 <div class="mb-3 col-3">
                     <label for="exampleFormControlInput1" class="form-label">Descuento</label>
-                    <input type="text" class="form-control" id="discount">
+                    <input value="20" type="text" class="form-control" id="discount">
                 </div>
 
                 <div class="mb-3 col-6">
                     <label for="exampleFormControlInput1" class="form-label">Envios</label>
-                    <textarea class="form-control" id="ship" rows="3"></textarea>
+                    <input value="todo el pais" class="form-control" id="ship" rows="3"></input>
                 </div>
                 <div class="mb-3 col-6">
                     <label for="exampleFormControlTextarea1" class="form-label">Descripcion</label>
-                    <textarea class="form-control" id="description" rows="3"></textarea>
-                </div>
+                    <input value="hermoso pantalon de verano" class="form-control" id="description" rows="3"></input>
+                </div>ADMIN
                 <input class="form-control" type="file" id="file">
             </div>
 
-            <button onclick="addNewProduct()" class="btn btn-primary">
+            <a href="admin.html" onclick="addNewProduct()" class="btn btn-primary">
                 agregar
-            </button>
+            </a>
 
             <div id="img">
 
             </div>
 
+            <table class="table mt-5">
+                <thead>
+                    <th>id</th>
+                    <th>Titulo</th>
+                    <th>Categoria</th>
+                    <th>Marca</th>
+                    <th>Genero</th>
+                    <th>Precio venta</th>
+                    <th>Precio lista</th>
+                    <th>Descuento</th>
+                    <th>Color</th>
+                    <th>Envios</th>
+                    <th>Descripcion</th>
+                    <th>Pic</th>
+                </thead>
+                <tbody id="item">
 
+                </tbody>
+            </table>
             <h4 class="mt-5">Estudiante => Rodrigo Abaz</h4>
 
         </div>

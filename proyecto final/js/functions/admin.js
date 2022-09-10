@@ -1,7 +1,6 @@
-let newProducts = [];
-
+let newProducts = JSON.parse(localStorage.getItem("newProducts")) || [];
+let newProduct = [];
 let base64String = "";
-
 let titleData = "";
 let categoryData = "";
 let brandData = "";
@@ -15,68 +14,17 @@ let descriptionData = "";
 let idData = "";
 
 function addNewProduct() {
-  const title = document.querySelector("#title");
-  const id = document.querySelector("#id");
-  const category = document.querySelector("#category");
-  const brand = document.querySelector("#brand");
-  const color = document.querySelector("#color");
-  const gender = document.querySelector("#gender");
-  const fullPrice = document.querySelector("#fullPrice");
-  const price = document.querySelector("#price");
-  const discount = document.querySelector("#discount");
-  const ship = document.querySelector("#ship");
-  const description = document.querySelector("#description");
-
-  /*    title.addEventListener("input, (e) => {
-        passwordData = btoa(e.target.value);
-      }); */
-
-  title.addEventListener("input", (e) => {
-    titleData = e.target.value;
-    console.log(titleData);
-  });
-
-  id.addEventListener("input", (e) => {
-    idData = e.target.value;
-    console.log(idData);
-  });
-
-  category.addEventListener("input", (e) => {
-    categoryData = e.target.value;
-    console.log(categoryData);
-  });
-  brand.addEventListener("input", (e) => {
-    brandData = e.target.value;
-    console.log(brandData);
-  });
-  color.addEventListener("input", (e) => {
-    colorData = e.target.value;
-    console.log(colorData);
-  });
-  gender.addEventListener("input", (e) => {
-    genderData = e.target.value;
-    console.log(genderData);
-  });
-  fullPrice.addEventListener("input", (e) => {
-    fullPriceData = e.target.value;
-    console.log(fullPriceData);
-  });
-  price.addEventListener("input", (e) => {
-    priceData = e.target.value;
-    console.log(priceData);
-  });
-  discount.addEventListener("input", (e) => {
-    discountData = e.target.value;
-    console.log(discountData);
-  });
-  ship.addEventListener("input", (e) => {
-    shipData = e.target.value;
-    console.log(shipData);
-  });
-  description.addEventListener("input", (e) => {
-    descriptionData = e.target.value;
-    console.log(descriptionData);
-  });
+  const title = document.querySelector("#title").value;
+  const id = document.querySelector("#id").value;
+  const category = document.querySelector("#category").value;
+  const brand = document.querySelector("#brand").value;
+  const color = document.querySelector("#color").value;
+  const gender = document.querySelector("#gender").value;
+  const fullPrice = document.querySelector("#fullPrice").value;
+  const price = document.querySelector("#price").value;
+  const discount = document.querySelector("#discount").value;
+  const ship = document.querySelector("#ship").value;
+  const description = document.querySelector("#description").value;
 
   document.getElementById("file").addEventListener("change", (e) => {
     const file = e.target.files[0];
@@ -87,36 +35,59 @@ function addNewProduct() {
         .replace(/^.+,/, "");
       let img = document.querySelector("#img");
       let data = localStorage.getItem("image");
-      /*   console.log(data);
-       */
+      console.log(data);
+
       img.innerHTML = "";
 
-      img.innerHTML += `<img height="400" src='data:image/jpeg;base64, ${base64String}' />`;
+      img.innerHTML += `<img height="200" src='data:image/jpeg;base64, ${base64String}' />`;
+
+      let now = new Date();
+      newProduct.push(
+        new NewProduct(
+          now,
+          id,
+          title,
+          price,
+          fullPrice,
+          discount,
+          base64String,
+          description,
+          brand,
+          ship,
+          gender,
+          category,
+          color
+        )
+      );
+      localStorage.setItem("newProducts", JSON.stringify(newProduct));
+
     };
     reader.readAsDataURL(file);
   });
 
-  let now = new Date();
-  if (descriptionData != "") {
-    newProducts.push(
-      new NewProduct(
-        now,
-        idData,
-        titleData,
-        priceData,
-        fullPriceData,
-        base64String,
-        descriptionData,
-        discountData,
-        brandData,
-        shipData,
-        genderData,
-        categoryData,
-        colorData
-      )
-    );
-  }
-  console.log(newProducts);
+}
+addNewProduct();
+function showNewProduct() {
+  const product = document.querySelector("#item");
+  product.innerHTML = "";
+  newProducts.forEach((item, i) => {
+    product.innerHTML += ` 
+                        <tr>
+                          <td class="mr-3 border">${item.id_item}</td>
+                          <td class="mr-3 border">${item.title}</td>
+                          <td class="mr-3 border">${item.category}</td>
+                          <td class="mr-3 border">${item.brand}</td>
+                          <td class="mr-3 border">${item.gender}</td>
+                          <td class="mr-3 border">${item.price}</td>
+                          <td class="mr-3 border">${item.full_price}</td>
+                          <td class="mr-3 border">${item.discount}</td>
+                          <td class="mr-3 border">${item.colors}</td>
+                          <td class="mr-3 border">${item.ship}</td>
+                          <td class="mr-3 border">${item.description}</td>
+                          <img height="100" src='data:image/jpeg;base64, ${item.pic}' />
+                          </tr>
+                        `;
+  });
 }
 
-addNewProduct();
+showNewProduct();

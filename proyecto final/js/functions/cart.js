@@ -38,10 +38,11 @@ function removeItemFromCart() {
   rem.forEach((item, i) => {
     item.addEventListener("click", (e) => {
       let remove = e.target.id;
-      let elem = cart.find((el) => (el.id_item = remove));
-      let i = cart.indexOf(elem[0]);
+      let elem = cart.filter((el) => (el.id_item = remove));
+      let i = cart.indexOf(elem);
       totalCart -= elem.price;
       cart.splice(i, 1);
+
       localStorage.setItem("cart2", JSON.stringify(cart));
       cartDetail();
       showItemsCountCart();
