@@ -168,7 +168,6 @@ function showCart(items2) {
                           <td class="mr-3 border">$${item.total}</td>
                           <td class="mr-3 border">${item.quantity}</td>
                           <button id="${item.id}" onclick="addMoreItems()" class="addMore mr-3 border btn btn-success">Agregar</button>
-                          <button id="${item.id}"  class="remove mr-3 border btn btn-danger">Borrar</button>
                           </tr>
                         `;
     }
@@ -186,5 +185,4 @@ function showCart(items2) {
                           `;
   }
   addMoreItems();
-  removeItemFromCart()
 }

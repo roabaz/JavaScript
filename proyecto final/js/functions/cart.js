@@ -32,25 +32,6 @@ function addItemToCart() {
   });
 }
 
-
-function removeItemFromCart() {
-  const rem = document.querySelectorAll(".remove");
-  rem.forEach((item, i) => {
-    item.addEventListener("click", (e) => {
-      let remove = e.target.id;
-      let elem = cart.filter((el) => (el.id_item = remove));
-      let i = cart.indexOf(elem);
-      totalCart -= elem.price;
-      cart.splice(i, 1);
-
-      localStorage.setItem("cart2", JSON.stringify(cart));
-      cartDetail();
-      showItemsCountCart();
-      showCart();
-    });
-  });
-}
-
 function addMoreItems() {
   const addMore = document.querySelectorAll(".addMore");
   result.forEach((prod, i) => {
@@ -82,7 +63,6 @@ function clearAllCartItems() {
 }
 
 function cartDetail(items) {
-  console.log("cart", cart);
   cart2 = JSON.parse(localStorage.getItem("cart2")) || [];
   items2 = JSON.parse(localStorage.getItem("items2")) || [];
   items = [];
