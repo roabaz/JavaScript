@@ -1,5 +1,6 @@
 function addItemToCart() {
   const add = document.querySelectorAll(".add");
+  result = result.concat(newProducts);
   result.forEach((prod, i) => {
     add.forEach((items, i) => {
       items.addEventListener("click", (e) => {

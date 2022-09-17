@@ -27,11 +27,11 @@ function addNewProduct() {
 
       img.innerHTML += `<img height="200" src='data:image/jpeg;base64, ${base64String}' />`;
       console.log(currency);
-      let now = new Date();
+      let id_item =  ('000000000' + Math.random().toString(36).substr(2, 9)).slice(-9);
       newProduct.push(
         new NewProduct(
-          now,
           id,
+          id_item,
           title,
           currency,
           price,
@@ -63,7 +63,7 @@ function showNewProduct() {
 /*     console.log(item)
  */    product.innerHTML += ` 
                         <tr>
-                          <td class="mr-3 border">${item.id_item}</td>
+                          <td class="mr-3 border">${item.id}</td>
                           <td class="mr-3 border">${item.title}</td>
                           <td class="mr-3 border">${item.category}</td>
                           <td class="mr-3 border">${item.brand}</td>
