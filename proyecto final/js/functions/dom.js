@@ -90,14 +90,13 @@ function loadAllProductsOnMain(results, q) {
       result = result.concat(newProducts);
       console.log(result);
       result.forEach((item, i) => {
-
-       let showSizes = ``;
-       if(item.sizes){
-        let itemSizes = item.sizes.join(" | ");
-         showSizes = ` <p class="sizes text-center mt-2">${itemSizes}</p>`;
-       }else{
-        showSizes = ``;
-       }
+        let showSizes = ``;
+        if (item.sizes) {
+          let itemSizes = item.sizes.join(" | ");
+          showSizes = ` <p class="sizes text-center mt-2">${itemSizes}</p>`;
+        } else {
+          showSizes = ``;
+        }
 
         if (item.full_price != "") {
           showFullPrice = `
@@ -118,11 +117,19 @@ function loadAllProductsOnMain(results, q) {
           .replaceAll("-", "")
           .replaceAll(".", "");
 
+        let showPic = ``;
+        let matches = item.pic.match(/https/i);
+        if (matches) {
+          showPic = `<img class="item__img" src="${item.pic}">`;
+        } else {
+          showPic = `<img class="item__img" src='data:image/jpeg;base64, ${item.pic}' />`;
+        }
+
         if (items && i < limit) {
           items.innerHTML += `
                       <div class="card item mx-auto my-auto mb-3 col-xl-3 col-6 cursor-auto">
                       <a href="item.html" onclick="itemDetail(${item.id})" >
-                        <img class="item__img" src="${item.pic}">
+                      ${showPic}
                         <b><p class="mt-2 text-center">${newTitle}</p></b>
                         </a>
                         <hr>
