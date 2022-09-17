@@ -37,12 +37,15 @@ function viewAllSizes(result) {
   const sizes_element = document.getElementById("sizes");
 
   result.forEach((item) => {
-    let k = item.sizes;
-    k.forEach((item2, i) => {
-      if (!sizes.includes(item2)) {
-        sizes.push(item2);
-      }
-    });
+    if (item.sizes) {
+      let k = item.sizes;
+
+      k.forEach((item2, i) => {
+        if (!sizes.includes(item2)) {
+          sizes.push(item2);
+        }
+      });
+    }
   });
 
   sizes_element.innerHTML = "";
@@ -74,7 +77,7 @@ function loadAllProductsOnMain(results, q) {
   fetch("js/products.json")
     .then((response) => response.json())
     .then((data) => {
-     let products = data;
+      let products = data;
 
       const items = document.getElementById("main");
       const quantity = document.getElementById("productsQuantity");
@@ -84,8 +87,18 @@ function loadAllProductsOnMain(results, q) {
 
       result = results.length > 0 ? (result = results) : (result = products);
 
+      result = result.concat(newProducts);
+      console.log(result);
       result.forEach((item, i) => {
+
+       let showSizes = ``;
+       if(item.sizes){
         let itemSizes = item.sizes.join(" | ");
+         showSizes = ` <p class="sizes text-center mt-2">${itemSizes}</p>`;
+       }else{
+        showSizes = ``;
+       }
+
         if (item.full_price != "") {
           showFullPrice = `
                           <span class="muted">
@@ -119,7 +132,8 @@ function loadAllProductsOnMain(results, q) {
                         }</span></b>
                         ${showFullPrice}
                         </div>
-                        <p class="sizes text-center mt-2">${itemSizes}</p>
+                        ${showSizes}
+
                         <button id="${
                           item.id_item
                         }" class="add fa-solid fa-circle-plus mt-2 btn btn-info"></button>

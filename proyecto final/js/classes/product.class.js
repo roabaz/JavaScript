@@ -43,6 +43,7 @@ class NewProduct {
     id,
     id_item,
     title,
+    currency,
     price,
     full_price,
     discount,
@@ -57,6 +58,7 @@ class NewProduct {
     this.id = id;
     this.id_item = id_item;
     this.title = title;
+    this.currency = currency;
     this.price = price;
     this.full_price = full_price;
     this.discount = discount;

@@ -1,18 +1,3 @@
-let newProducts = JSON.parse(localStorage.getItem("newProducts")) || [];
-let newProduct = [];
-let base64String = "";
-let titleData = "";
-let categoryData = "";
-let brandData = "";
-let colorData = "";
-let genderData = "";
-let fullPriceData = "";
-let priceData = "";
-let discountData = "";
-let shipData = "";
-let descriptionData = "";
-let idData = "";
-
 function addNewProduct() {
   const title = document.querySelector("#title").value;
   const id = document.querySelector("#id").value;
@@ -21,6 +6,7 @@ function addNewProduct() {
   const color = document.querySelector("#color").value;
   const gender = document.querySelector("#gender").value;
   const fullPrice = document.querySelector("#fullPrice").value;
+  const currency = document.querySelector("#currency").value;
   const price = document.querySelector("#price").value;
   const discount = document.querySelector("#discount").value;
   const ship = document.querySelector("#ship").value;
@@ -35,18 +21,19 @@ function addNewProduct() {
         .replace(/^.+,/, "");
       let img = document.querySelector("#img");
       let data = localStorage.getItem("image");
-      console.log(data);
-
+/*       console.log(data);
+ */
       img.innerHTML = "";
 
       img.innerHTML += `<img height="200" src='data:image/jpeg;base64, ${base64String}' />`;
-
+      console.log(currency);
       let now = new Date();
       newProduct.push(
         new NewProduct(
           now,
           id,
           title,
+          currency,
           price,
           fullPrice,
           discount,
@@ -59,25 +46,29 @@ function addNewProduct() {
           color
         )
       );
-      localStorage.setItem("newProducts", JSON.stringify(newProduct));
 
+      localStorage.setItem("newProducts", JSON.stringify(newProduct));
     };
     reader.readAsDataURL(file);
   });
-
 }
+
 addNewProduct();
+
 function showNewProduct() {
   const product = document.querySelector("#item");
   product.innerHTML = "";
+  newProducts = newProducts.reverse();
   newProducts.forEach((item, i) => {
-    product.innerHTML += ` 
+/*     console.log(item)
+ */    product.innerHTML += ` 
                         <tr>
                           <td class="mr-3 border">${item.id_item}</td>
                           <td class="mr-3 border">${item.title}</td>
                           <td class="mr-3 border">${item.category}</td>
                           <td class="mr-3 border">${item.brand}</td>
                           <td class="mr-3 border">${item.gender}</td>
+                          <td class="mr-3 border">${item.currency}</td>
                           <td class="mr-3 border">${item.price}</td>
                           <td class="mr-3 border">${item.full_price}</td>
                           <td class="mr-3 border">${item.discount}</td>
@@ -88,6 +79,7 @@ function showNewProduct() {
                           </tr>
                         `;
   });
+  console.log(newProducts);
 }
 
 showNewProduct();
